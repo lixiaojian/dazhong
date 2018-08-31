@@ -9,21 +9,20 @@
     <meta content="black" name="apple-mobile-web-app-status-bar-style">
     <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge">
     <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/common.css">
     <link rel="stylesheet" href="./lib/easyui-1.6.2/themes/bootstrap/easyui.css">
     <link rel="stylesheet" href="./css/login.css">
     <title>登录</title>
 </head>
 <body>
-    <div class="login-form">
+    <div class="login-form-warpper">
         <div class="form-title"><img class="title-image" src="./images/login/title.png" alt=""></div>
-        <form id="ff" method="post">
+        <form id="ff" method="post" class="login-form">
             <div>
-                <label for="userName">Name:</label>
-                <input class="easyui-validatebox" type="text" id="userName" name="name" data-options="required:true" />
+                <input class="input" type="text" id="userName" name="name"/>
             </div>
             <div>
-                <label for="password">Email:</label>
-                <input class="easyui-validatebox" id="password" type="text" name="email" data-options="validType:'email'" />
+                <input class="input" id="password" type="text" name="email"/>
             </div>
         </form>
     </div>
