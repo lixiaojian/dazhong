@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./lib/easyui-1.6.2/themes/bootstrap/easyui.css">
+    <link rel="stylesheet" href="./css/login.css">
+    <title>登录</title>
+</head>
+<body>
+    <div class="login-form">
+        <div class="form-title"><img class="title-image" src="./images/login/title.png" alt=""></div>
+        <form id="ff" method="post">
+            <div>
+                <label for="userName">Name:</label>
+                <input class="easyui-validatebox" type="text" id="userName" name="name" data-options="required:true" />
+            </div>
+            <div>
+                <label for="password">Email:</label>
+                <input class="easyui-validatebox" id="password" type="text" name="email" data-options="validType:'email'" />
+            </div>
+        </form>
+    </div>
+</body>
+</html>
