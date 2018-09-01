@@ -1,21 +1,43 @@
-html{
-    height: 100%;
-}
 body{
-    height: 100%;
     min-width: 1200px;
+    min-height: 600px;
     background: url("../images/login/login-bg.jpg") no-repeat center center;
     background-size: cover;
 }
 .login-form-warpper{
     width: 600px;
-    margin-left: 18%;
-    margin-top: 8%;
+    padding-left: 18%;
+    padding-top: 9%;
 }
 .title-image{
     width: 100%;
 }
 .login-form{
+    padding: 30px 0;
     margin-left: 78px;
     width: 380px;
+}
+.login-form .username-input{
+    padding-left: 50px;
+    background: url("../images/login/login_icos.png") no-repeat 0 0;
+}
+.login-form .password-input{
+    padding-left: 50px;
+    background: url("../images/login/login_icos.png") no-repeat 0 -45px;
+}
+.login-form .verifycode-input{
+    width: 272px;
+}
+.verifycode-img{
+    width: 90px;
+    height: 45px;
+    vertical-align: bottom;
+    cursor: pointer;
+}
+.submit-btn{
+    width: 100%;
+    transition: font-size .3s;
+}
+.submit-btn:hover{
+    font-size: 20px;
 }

@@ -17,14 +17,24 @@
 <body>
     <div class="login-form-warpper">
         <div class="form-title"><img class="title-image" src="./images/login/title.png" alt=""></div>
-        <form id="ff" method="post" class="login-form">
-            <div>
-                <input class="input" type="text" id="userName" name="name"/>
+        <form id="login_form" method="post" class="login-form">
+            <div class="filed-con">
+                <input class="input username-input" type="text" name="userName"/>
             </div>
-            <div>
-                <input class="input" id="password" type="text" name="email"/>
+            <div class="filed-con">
+                <input class="input password-input" type="password" name="passWord"/>
+            </div>
+            <div class="filed-con">
+                <input class="input verifycode-input" type="text" name="verifyCode"/>
+                <img class="verifycode-img" src="./images/login/verifyCode.jpeg" alt="验证码">
+            </div>
+            <div class="filed-con">
+                <a class="btn btn-primary submit-btn" href="javascript:;">登录</a>
             </div>
         </form>
     </div>
+    <script src="lib/jquery-1.12.4/jquery.min.js"></script>
+    <script src="lib/easyui-1.6.2/jquery.easyui.min.js"></script>
+    <script src="javascript/login.js"></script>
 </body>
 </html>

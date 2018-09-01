@@ -1,11 +1,40 @@
+html,body{
+    height: 100%;
+}
 .input{
     width: 320px;
     border: 1px solid #ccc;
     height: 33px;
     line-height: 33px;
-    padding: 5px 5px 5px 50px;
+    padding: 5px;
     border-radius: 3px;
     background-color: transparent;
-    background: url(../images/login_icos.png) no-repeat 0 -45px;
     font-size: 16px;
+}
+.filed-con{
+    padding-bottom: 20px;
+}
+.btn{
+    display: inline-block;
+    text-align: center;
+    border-radius: 3px;
+    height: 45px;
+    line-height: 45px;
+    padding: 0 10px;
+    text-decoration: none;
+}
+.btn-primary{
+    background-color: #207bd8;
+    color: #fff;
+}
+.panel-body{
+    display: flex;
+    align-items: center;
+}
+.panel-body .messager-icon{
+    float: none;
+    margin:0 10px 0 0;
+}
+.messager-window .messager-body{
+    padding: 20px 10px;
 }

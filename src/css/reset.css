@@ -76,13 +76,3 @@ li {
 body {
     font-family: PingFangSC,'helvetica neue','hiragino sans gb',arial,'microsoft yahei ui','microsoft yahei',simsun,sans-serif !important;
 }
-
-a {
-    color: #666;
-    text-decoration: none;
-}
-
-a:hover, a:active {
-    color: #0ae;
-    text-decoration: underline;
-}
