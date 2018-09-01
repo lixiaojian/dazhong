@@ -5,41 +5,20 @@ html,body{
     height: 100%;
 }
 
-.input{
-    width: 320px;
-    border: 1px solid #ccc;
-    height: 33px;
-    line-height: 33px;
-    padding: 5px;
-    border-radius: 3px;
-    background-color: transparent;
-    font-size: 16px;
-}
 .filed-con{
     padding-bottom: 20px;
 }
-.btn{
-    display: inline-block;
-    text-align: center;
-    border-radius: 3px;
-    height: 32px;
-    line-height: 32px;
-    padding: 0 10px;
-    text-decoration: none;
-}
-.btn-primary{
-    background-color: #337ab7;
-    border-color: #2e6da4;
-    color: #fff;
-}
-.btn-primary:hover {
-    background-color: #286090;
-    border-color: #204d74;
-}
 
-.panel-body .messager-icon{
+.messager-window .messager-icon{
     float: none;
     margin:0 10px 0 0;
+    display: inline-block;
+}
+.messager-window .messager-icon + div{
+    display: inline-block;
+}
+.messager-window .messager-icon,.messager-window .messager-icon + div{
+    vertical-align: middle;
 }
 .messager-window .messager-body{
     padding: 20px 10px;
@@ -67,7 +46,6 @@ html,body{
 }
 .layout-panel .panel-body{
     align-items: flex-start;
-    font-size: 14px;
 }
 .layout-panel-north .page-title{
     font-size: 32px;
@@ -140,9 +118,6 @@ html,body{
     width: 155px;
     padding: 5px;
 }
-.search-btn{
-    padding: 0 20px;
-}
 
 /*主内容*/
 .data-list .btn-box{
@@ -172,4 +147,15 @@ html,body{
 }
 .pagination td{
     vertical-align: middle;
+}
+
+/*添加编辑用户的弹层*/
+.edit-user-dialog .filed-con{
+    display: inline-block;
+    width: 50%;
+    float: left;
+}
+.edit-user-dialog form{
+    margin: 0;
+    padding: 20px;
 }

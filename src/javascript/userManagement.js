@@ -16,6 +16,10 @@
     var searchBtn = $('#search_btn');
     //表格
     var userListTable = $('#userListTable');
+    //编辑和添加用户的form
+    var editUserForm = $('#edit_user_form');
+    //编辑和添加用户的弹层
+    var editDialog = $('#editDialog');
     //被选中的记录
     var selectedData = null;
 
@@ -26,6 +30,16 @@
             msg:msg,
             icon:'error',
             ok:'确定'
+        });
+    }
+    //显示成功信息
+    function showSuccess(msg,callback) {
+        $.messager.alert({
+            title:'成功提示',
+            msg:msg,
+            icon:'ok',
+            ok:'确定',
+            fn:callback||function () {}
         });
     }
 
@@ -45,8 +59,8 @@
                 userName:form.userName.value,
                 phone:form.phone.value,
                 name:form.name.value,
-                company:companySelect.val(),
-                accountStatus:accountStatusSelect.val()
+                company:form.company.value,
+                accountStatus:form.accountStatus.value
             }
         }).done(function (resp) {
             if(resp.code === successCode){
@@ -82,7 +96,11 @@
                 {field:'company',title:'所属公司',align:'center',width:'10%'},
                 {field:'dept',title:'所属部门',align:'center',width:'10%'},
                 {field:'phone',title:'手机号码',align:'center',width:'10%'},
-                {field:'acountStatus',title:'账户状态',align:'center',width:'10%'},
+                {field:'accountStatus',title:'账户状态',align:'center',width:'10%',
+                    formatter: function(value,row,index){
+                        return value == 2?'停用':'在用';
+                    }
+                },
                 {field:'creatTime',title:'创建时间',align:'center',width:'10%'},
                 {field:'creater',title:'创建者',align:'center',width:'10%'},
                 {field:'updateTime',title:'修改时间',align:'center',width:'10%'},
@@ -122,6 +140,48 @@
         getData(1);
     })
 
+    //点击新增账户按钮
+    $('#add_user_btn').on('click',function (e) {
+        e.stopPropagation();
+        editDialog.dialog('open').dialog('center').dialog('setTitle','添加用户');
+        editUserForm.form('clear');
+    });
+    //点击设置账户按钮
+    $('#edit_user_btn').on('click',function (e) {
+        e.stopPropagation();
+        //获取选中的行
+        var row = userListTable.datagrid('getSelected');
+        if(row){
+            editDialog.dialog('open').dialog('center').dialog('setTitle','设置用户');
+            //数据回填 如果列表数据不全，这里可以先取记录id 然后通过id再去加载一次详情
+            editUserForm.form('load',row);
+        }else{
+            showError('请先选择需要设置的记录行!');
+        }
+    });
+    //点击保存按钮
+    $('#save_user_btn').on('click',function (e) {
+        e.stopPropagation();
+        // todo 这里记得提交前做验证
+        $.ajax({
+            url: apiUrlBase+'ok.json',
+            method: 'POST',
+            dataType: 'json',
+            //todo 这里用表单序列化需要注意 复选框的值，如果取值有问题请单独取所有的值(参考上面的搜索取值)
+            data:editUserForm.serialize()
+        }).done(function (resp) {
+            if(resp.code === successCode){
+                showSuccess('保存成功',function () {
+                    //关闭弹层 这里也可以关闭后重新加载数据
+                    editDialog.dialog('close');
+                })
+            }else{
+                showError(resp.msg || '操作失败');
+            }
+        }).fail(function () {
+            showError('服务器错误！');
+        });
+    })
     //页面刚开始进来时加载一次数据
     getData(1);
 });
