@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="edge"/>
+    <title>组织结构</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./lib/easyui-1.6.2/themes/bootstrap/easyui.css">
+</head>
+<body>
+<div class="easyui-layout">
+    <!--页头-->
+    <div class="page-title" data-options="region:'north'" style="height: 60px">
+        <img src="images/common/logo.png" alt="">大众交易统一认证平台
+    </div>
+    <!--左边导航-->
+    <div data-options="region:'west',title:'功能导航',split:true" style="width:200px;">
+        <a href="userManagement.html" class="left-link">用户管理</a>
+        <a href="#" class="left-link link-active">组织结构</a>
+        <a href="" class="left-link">对接系统</a>
+        <a href="" class="left-link">钉钉用户管理</a>
+        <a href="" class="left-link">平台用户管理</a>
+        <a href="" class="left-link">平台日志</a>
+        <a href="" class="left-link">接口日志</a>
+    </div>
+    <!--页面主内容-->
+    <div data-options="region:'center',title:'当前位置：组织结构'" style="padding:5px;background:#eee;"></div>
+</div>
+<script src="./lib/jquery-1.12.4/jquery.min.js"></script>
+<script src="./lib/easyui-1.6.2/jquery.easyui.min.js"></script>
+</body>
+</html>

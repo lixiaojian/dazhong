@@ -1,6 +1,10 @@
+.combo-panel{
+    height: auto!important;
+}
 html,body{
     height: 100%;
 }
+
 .input{
     width: 320px;
     border: 1px solid #ccc;
@@ -18,23 +22,154 @@ html,body{
     display: inline-block;
     text-align: center;
     border-radius: 3px;
-    height: 45px;
-    line-height: 45px;
+    height: 32px;
+    line-height: 32px;
     padding: 0 10px;
     text-decoration: none;
 }
 .btn-primary{
-    background-color: #207bd8;
+    background-color: #337ab7;
+    border-color: #2e6da4;
     color: #fff;
 }
-.panel-body{
-    display: flex;
-    align-items: center;
+.btn-primary:hover {
+    background-color: #286090;
+    border-color: #204d74;
 }
+
 .panel-body .messager-icon{
     float: none;
     margin:0 10px 0 0;
 }
 .messager-window .messager-body{
     padding: 20px 10px;
+}
+.panel-header .panel-title{
+    font-size: 14px;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 5px;
+}
+.easyui-layout{
+    width: 100%;
+    height: 100%;
+}
+
+.page-title img{
+    width: 40px;
+    padding-right: 10px;
+}
+.layout-panel .page-content{
+    padding:5px;
+}
+.layout-panel-west .layout-body{
+    flex-direction: column;
+}
+.layout-panel .panel-body{
+    align-items: flex-start;
+    font-size: 14px;
+}
+.layout-panel-north .page-title{
+    font-size: 32px;
+    font-weight: 700;
+    padding: 0 30px;
+    background-color: #00a8ed;
+    color: #fff;
+}
+.layout-panel-north .panel-body{
+    display: flex;
+    align-items: center;
+}
+.combo-panel.panel-body{
+    display: inline-block;
+}
+.layout-panel-west .panel-body{
+    background: #ddeef8;
+}
+.layout-panel-west .left-link{
+    display: inline-block;
+    font-size: 16px;
+    padding: 10px 10px 10px 40px;
+    width: 100%;
+    color: #666;
+    position: relative;
+    transition: all .5s;
+}
+.layout-panel-west .left-link:hover{
+    background-color: #00a8ed;
+    color: #fff;
+}
+.layout-panel-west .link-active{
+    background-color: #00a8ed;
+    border-left: 6px solid #008fca;
+    border-bottom: 1px solid #ddeef8;
+    padding-left: 34px;
+    color: #fff;
+}
+.layout-panel-west .link-active:after{
+    content: "";
+    width: 0;
+    height: 0;
+    border-top: 18px solid transparent;
+    border-right: 18px solid #e4f3ff;
+    border-bottom: 18px solid transparent;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+/*搜索*/
+.search-box{
+    width: 100%;
+    padding: 10px 20px 0 20px;
+    border-bottom: 1px solid #ccc;
+}
+.search-box .filed-con{
+    display: inline-block;
+    width: 250px;
+    padding-left: 10px;
+}
+.search-box .filed-con:last-child{
+    text-align: right;
+}
+.search-box .filed-con label{
+    display: inline-block;
+    text-align: right;
+    width: 80px;
+}
+.search-box .filed-con input{
+    width: 155px;
+    padding: 5px;
+}
+.search-btn{
+    padding: 0 20px;
+}
+
+/*主内容*/
+.data-list .btn-box{
+    text-align: right;
+    padding: 10px 0;
+}
+.data-list .datagrid-header-inner{
+    width: 100%;
+    float: none;
+}
+.datagrid-view table{
+    width: 100%;
+}
+.datagrid-htable .datagrid-cell,.datagrid-btable .datagrid-cell{
+    line-height: 32px;
+}
+.data-list .datagrid-wrap,.data-list .datagrid-body{
+    height: auto!important;
+}
+.datagrid-header-check, .datagrid-cell-check{
+    display: inline-block;
+    vertical-align: middle;
+}
+.pagination{
+    background: #F5F5F5;
+    border: 1px solid #D4D4D4;
+}
+.pagination td{
+    vertical-align: middle;
 }

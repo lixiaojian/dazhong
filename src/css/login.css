@@ -37,6 +37,8 @@ body{
 .submit-btn{
     width: 100%;
     transition: font-size .3s;
+    height: 45px;
+    line-height: 45px;
 }
 .submit-btn:hover{
     font-size: 20px;
