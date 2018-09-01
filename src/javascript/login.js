@@ -5,7 +5,7 @@
     //请求返回的正确码
     var successCode = 0;
     //接口的基本路径
-    var apiUrlBase = '../mockData/'
+    var apiUrlBase = '../mockData/';
     //form
     var loginForm = $('#login_form');
     //登录按钮

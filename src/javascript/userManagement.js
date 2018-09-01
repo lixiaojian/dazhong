@@ -2,6 +2,10 @@
  * Created by 872458899@qq.com on 2018/9/1.
  */
 ;$(function () {
+    //请求返回的正确码
+    var successCode = 0;
+    //接口的基本路径
+    var apiUrlBase = '../mockData/';
     //搜索的表单
     var searchForm = $('#search_form');
     //搜索按钮
@@ -11,17 +15,58 @@
     //被选中的记录
     var selectedData = null;
 
-    function getData(param) {
-        var data = [
-            {"id":1,"userName":"admin","name":"张三","company":"大众交通","dept":"总经理办公室","phone":"13818789098","acountStatus":"在用","creatTime":"2018-08-28 18:00:00","creater":"admin","updateTime":"2018-08-28 19:00:00","updater":"李四"},
-            {"id":2,"userName":"test","name":"李四","company":"大众交通","dept":"总经理办公室","phone":"13818789098","acountStatus":"在用","creatTime":"2018-08-28 18:00:00","creater":"admin","updateTime":"2018-08-28 19:00:00","updater":"李四"},
-            {"id":3,"userName":"user","name":"王五","company":"大众交通","dept":"总经理办公室","phone":"13818789098","acountStatus":"在用","creatTime":"2018-08-28 18:00:00","creater":"admin","updateTime":"2018-08-28 19:00:00","updater":"李四"},
-            {"id":4,"userName":"gust","name":"赵六","company":"大众交通","dept":"总经理办公室","phone":"13818789098","acountStatus":"在用","creatTime":"2018-08-28 18:00:00","creater":"admin","updateTime":"2018-08-28 19:00:00","updater":"李四"}
-        ];
+    //显示错误信息
+    function showError(msg) {
+        $.messager.alert({
+            title:'错误提示',
+            msg:msg,
+            icon:'error',
+            ok:'确定'
+        });
+    }
+
+    /**
+     * 去请求数据
+     * @param pageNumber 页数
+     */
+    function getData(pageNumber) {
+        pageNumber = pageNumber?(pageNumber<1?1:pageNumber):1;
+        var form = searchForm[0];
+        $.ajax({
+            url:apiUrlBase+'userList.json',
+            method:'POST',
+            dataType:'json',
+            data:{
+                pageNumber:pageNumber,
+                userName:form.userName.value,
+                phone:form.phone.value,
+                name:form.name.value,
+                company:form.company.value,
+                accountStatus:form.accountStatus.value
+            }
+        }).done(function (resp) {
+            if(resp.code === successCode){
+                renderTable(resp);
+
+            }else{
+                showError(resp.msg || '获取数据失败');
+            }
+        }).fail(function (err){
+            //请求失败
+            showError('服务器错误!');
+        });
+    }
+
+    /**
+     * 渲染数据
+     * @param data 数据
+     */
+    function renderTable(respData) {
+        var data = respData.data;
+        var page = respData.page;
 
         userListTable.datagrid({
             data:data,
-            // idField:'id',
             fitColumns:true,
             fit:true,
             striped:true,
@@ -43,8 +88,8 @@
                 selectedData = data;
             }
         });
+        initPagination(page.pageSize,page.pageNumber,page.total);
     }
-
     /**
      * 初始化表格的分页
      * @param pageSize
@@ -52,17 +97,22 @@
      * @param total
      */
     function initPagination(pageSize,pageNumber,total){
+        pageSize = pageSize || 10;
         $('#userlist_pagination').pagination({
             total:total,
-            pageNumber:2,
+            pageNumber:pageNumber,
             pageSize:pageSize,
             showPageList:false,
             showRefresh:false,
             beforePageText: '第',
             afterPageText: '页    共 {pages} 页',
             displayMsg: '当前显示 {from} - {to} 条记录   共 {total} 条记录',
+            onSelectPage:function (pageNumber,pageSize) {
+                getData(pageNumber);
+            }
         });
     }
-    getData();
-    initPagination(10,1,137);
+
+    //
+    getData(1);
 });
