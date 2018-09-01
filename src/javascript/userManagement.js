@@ -8,22 +8,17 @@
     var apiUrlBase = '../mockData/';
     //搜索的表单
     var searchForm = $('#search_form');
-    //所属公司的下拉框
-    var companySelect = $('#company');
-    //用户状态的下拉框
-    var accountStatusSelect = $('#accountStatus');
-    //搜索按钮
-    var searchBtn = $('#search_btn');
     //表格
     var userListTable = $('#userListTable');
     //编辑和添加用户的form
     var editUserForm = $('#edit_user_form');
     //编辑和添加用户的弹层
     var editDialog = $('#editDialog');
-    //被选中的记录
-    var selectedData = null;
 
-    //显示错误信息
+    /**
+     * 显示错误信息
+     * @param msg 信息内容
+     */
     function showError(msg) {
         $.messager.alert({
             title:'错误提示',
@@ -32,7 +27,11 @@
             ok:'确定'
         });
     }
-    //显示成功信息
+    /**
+     * 显示成功信息
+     * @param msg 信息内容
+     * @param callback 点确定后的回调
+     */
     function showSuccess(msg,callback) {
         $.messager.alert({
             title:'成功提示',
@@ -105,10 +104,7 @@
                 {field:'creater',title:'创建者',align:'center',width:'10%'},
                 {field:'updateTime',title:'修改时间',align:'center',width:'10%'},
                 {field:'updater',title:'修改者',align:'center',width:'10%'}
-            ]],
-            onSelect:function (index,data) {
-                selectedData = data;
-            }
+            ]]
         });
         initPagination(page.pageSize,page.pageNumber,page.total);
     }
@@ -135,7 +131,7 @@
         });
     }
     //点击搜索按钮
-    searchBtn.on('click',function () {
+    $('#search_btn').on('click',function () {
         //只要是点击按钮就去搜索第一页的数据，所以这里固定传1
         getData(1);
     })
@@ -143,7 +139,9 @@
     //点击新增账户按钮
     $('#add_user_btn').on('click',function (e) {
         e.stopPropagation();
+        //显示弹层
         editDialog.dialog('open').dialog('center').dialog('setTitle','添加用户');
+        //清空弹层的数据
         editUserForm.form('clear');
     });
     //点击设置账户按钮
@@ -172,7 +170,7 @@
         }).done(function (resp) {
             if(resp.code === successCode){
                 showSuccess('保存成功',function () {
-                    //关闭弹层 这里也可以关闭后重新加载数据
+                    //关闭弹层 这里也可以关闭后重新加载数据做到数据实时更新的效果
                     editDialog.dialog('close');
                 })
             }else{
