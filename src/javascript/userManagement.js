@@ -8,6 +8,10 @@
     var apiUrlBase = '../mockData/';
     //搜索的表单
     var searchForm = $('#search_form');
+    //所属公司的下拉框
+    var companySelect = $('#company');
+    //用户状态的下拉框
+    var accountStatusSelect = $('#accountStatus');
     //搜索按钮
     var searchBtn = $('#search_btn');
     //表格
@@ -41,8 +45,8 @@
                 userName:form.userName.value,
                 phone:form.phone.value,
                 name:form.name.value,
-                company:form.company.value,
-                accountStatus:form.accountStatus.value
+                company:companySelect.val(),
+                accountStatus:accountStatusSelect.val()
             }
         }).done(function (resp) {
             if(resp.code === successCode){
@@ -112,7 +116,12 @@
             }
         });
     }
+    //点击搜索按钮
+    searchBtn.on('click',function () {
+        //只要是点击按钮就去搜索第一页的数据，所以这里固定传1
+        getData(1);
+    })
 
-    //
+    //页面刚开始进来时加载一次数据
     getData(1);
 });
