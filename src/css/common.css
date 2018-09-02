@@ -181,3 +181,7 @@ html,body{
 .data_history:nth-child(2){
     border-left: 1px solid #ccc;
 }
+.detail-item{
+    padding: 2px 0;
+    font-size: 14px;
+}
