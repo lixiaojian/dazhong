@@ -2,10 +2,6 @@
  * Created by 872458899@qq.com on 2018/9/2.
  */
 ;$(function () {
-    //请求返回的正确码
-    var successCode = 0;
-    //接口的基本路径
-    var apiUrlBase = '../mockData/';
     //搜索的表单
     var searchForm = document.getElementById('search_form');
     //表格
@@ -152,11 +148,10 @@
                     })
                 }
             });
-            var id = row.id;
         }else{
             showError('请先选择需要禁用的记录行!');
         }
-    })
+    });
     //进入页面时加载一次数据
     getData(1);
 });

@@ -27,7 +27,7 @@ function showSuccess(msg,callback) {
     $.messager.alert({
         title:'成功提示',
         msg:msg,
-        icon:'ok',
+        icon:'info',
         ok:'确定',
         fn:callback||function () {}
     });

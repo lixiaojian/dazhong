@@ -1,0 +1,29 @@
+{
+  "code":0,
+  "data":[
+    {"id":"1","text":"统一认证","state":"open","children":[
+      {"id":2,"text":"用户管理","state":"closed","children":[
+        {"id":21,"text":"新增"},
+        {"id":22,"text":"编辑"},
+        {"id":23,"text":"停用"},
+        {"id":24,"text":"恢复"}
+      ]},
+      {"id":3,"text":"角色设置","state":"closed","children":[
+        {"id":31,"text":"新增"},
+        {"id":32,"text":"编辑"},
+        {"id":33,"text":"删除"}
+      ]},
+      {"id":4,"text":"CRM系统","state":"closed","children":[
+        {"id":41,"text":"新增"},
+        {"id":42,"text":"查询"},
+        {"id":43,"text":"删除"},
+        {"id":44,"text":"修改"}
+      ]},
+      {"id":5,"text":"统一权限管理","state":"closed","children":[
+        {"id":51,"text":"新增"},
+        {"id":52,"text":"查询"},
+        {"id":53,"text":"修改"}
+      ]}
+    ]}
+  ]
+}
