@@ -124,7 +124,7 @@ html,body{
 .search-box .calendar_warpper input{
     width: 120px;
 }
-.easyui-calendar td{
+.calendar td{
     vertical-align: middle;
 }
 /*主内容*/
@@ -166,4 +166,18 @@ html,body{
 .edit-cloum2-dialog form{
     margin: 0;
     padding: 20px;
+}
+
+.data_history{
+    padding: 5px;
+    width: 50%;
+    float: left;
+}
+.history-title{
+    text-align: center;
+    padding-bottom: 20px;
+    font-size: 14px;
+}
+.data_history:nth-child(2){
+    border-left: 1px solid #ccc;
 }
