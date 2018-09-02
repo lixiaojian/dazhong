@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/common.css">
     <link rel="stylesheet" href="./lib/easyui-1.6.2/themes/bootstrap/easyui.css">
+    <link rel="stylesheet" href="./lib/easyui-1.6.2/themes/color.css">
+    <link rel="stylesheet" href="./lib/easyui-1.6.2/themes/icon.css">
 </head>
 <body>
 <div class="easyui-layout">
@@ -27,14 +29,69 @@
         <a href="organization.html" class="left-link">组织结构</a>
         <a href="abutment.html" class="left-link link-active">对接系统</a>
         <a href="#" class="left-link">钉钉用户管理</a>
-        <a href="" class="left-link">平台用户管理</a>
+        <a href="platform.html" class="left-link">平台用户管理</a>
         <a href="" class="left-link">平台日志</a>
         <a href="" class="left-link">接口日志</a>
     </div>
     <!--页面主内容-->
-    <div class="page-content" data-options="region:'center',title:'当前位置：钉钉用户管理'"></div>
+    <div class="page-content" data-options="region:'center',title:'当前位置：钉钉用户管理'">
+        <div class="easyui-layout">
+            <!--组织架构-->
+            <div data-options="region:'west',split:true" style="width:300px;background: #fff">
+                <div style="text-align: right;padding: 10px">
+                    <a id="synchronize_dept" href="javascript:;" class="easyui-linkbutton c8" data-options="iconCls:'icon-reload'">同步</a>
+                </div>
+                <ul style="padding: 10px" id="dept_tree"></ul>
+            </div>
+            <!--部门对应的用户列表-->
+            <div data-options="region:'center'">
+                <!--列表区域-->
+                <div class="data-list" style="padding:0 10px">
+                    <!--按钮区域-->
+                    <div class="btn-box" id="add_edit_user_btns">
+                        <a id="add_user_btn" data-options="width:80" href="javascript:;" class="easyui-linkbutton c8">新增</a>
+                        <a id="delete_user_btn" data-options="width:80" href="javascript:;" class="easyui-linkbutton c8">删除</a>
+                    </div>
+                    <!--表格-->
+                    <table id="userListTable"></table>
+                    <!--分页-->
+                    <div id="userlist_pagination"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--弹层-->
+<div id="addDialog" class="easyui-dialog" style="width:300px;padding: 10px 20px;" data-options="closed:true,modal:true,border:'thin',buttons:'#editDialog_buttons'">
+    <form id="add_user_form" class="clearfix">
+        <input name="deptId" type="hidden">
+        <div class="filed-con">
+            <select class="easyui-combobox" name="name" label="姓名:" labelWidth="60" labelAlign="right" style="width: 100%">
+                <option value="">请选择</option>
+                <option value="1">张三</option>
+                <option value="2">李四</option>
+                <option value="3">王五</option>
+                <option value="4">赵六</option>
+            </select>
+        </div>
+        <div class="filed-con">
+            <select class="easyui-combobox" name="position" label="职位:" labelWidth="60" labelAlign="right" style="width: 100%">
+                <option value="">请选择</option>
+                <option value="1">人事</option>
+                <option value="2">账务</option>
+                <option value="3">经理</option>
+            </select>
+        </div>
+    </form>
+</div>
+<!--弹层的按钮-->
+<div id="editDialog_buttons">
+    <a href="javascript:void(0)" id="save_user_btn" class="easyui-linkbutton c8" style="width:90px">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:$('#addDialog').dialog('close')" style="width:90px">取消</a>
 </div>
 <script src="./lib/jquery-1.12.4/jquery.min.js"></script>
 <script src="./lib/easyui-1.6.2/jquery.easyui.min.js"></script>
+<script src="./javascript/common.js"></script>
+<script src="./javascript/dingding.js"></script>
 </body>
 </html>
