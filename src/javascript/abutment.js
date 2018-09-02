@@ -15,7 +15,6 @@
     //编辑和添加用户的弹层
     var editDialog = $('#editDialog');
 
-
     /**
      * 去请求数据
      * @param pageNumber 页数
@@ -94,18 +93,70 @@
         });
     }
     //点击搜索按钮
-    $('#search_btn').on('click',function () {
+    $('#search_btn').on('click',function (e) {
+        e.stopPropagation();
         //只要是点击按钮就去搜索第一页的数据，所以这里固定传1
         getData(1);
     });
-    //点击新增账户按钮
+    //点击新增系统按钮按钮
     $('#add_sys_btn').on('click',function (e) {
         e.stopPropagation();
         //显示弹层
-        editDialog.dialog('open').dialog('center').dialog('setTitle','添加用户');
+        editDialog.dialog('open').dialog('center').dialog('setTitle','添加系统');
         //清空弹层的数据
         editSystemForm.form('clear');
     });
+
+    //点击修改系统按钮
+    $('#edit_sys_btn').on('click',function (e) {
+        e.stopPropagation();
+        //获取选中的行
+        var row = systemListTable.datagrid('getSelected');
+        if(row){
+            editDialog.dialog('open').dialog('center').dialog('setTitle','修改系统');
+            //数据回填 如果列表数据不全，这里可以先取记录id 然后通过id再去加载一次详情
+            editSystemForm.form('load',row);
+        }else{
+            showError('请先选择需要设置的记录行!');
+        }
+    });
+    //点击保存按钮
+    $('#save_sys_btn').on('click',function (e) {
+        e.stopPropagation();
+        // todo 参考userManagement.js 的保存方法
+    });
+
+    //点击禁用按钮
+    $('#disabled_sys_btn').on('click',function (e) {
+        e.stopPropagation();
+        //获取选中的行
+        var row = systemListTable.datagrid('getSelected');
+        if(row){
+            $.messager.confirm('确认提示','您确定要禁用该系统?',function(r){
+                //如果点击了确定按钮
+                if (r){
+                    $.ajax({
+                        url:apiUrlBase+'ok.json',
+                        method: 'GET',
+                        data:{
+                            id:row.id
+                        }
+                    }).done(function (resp) {
+                        if(resp.code === successCode){
+                            showSuccess('禁用成功！');
+                        }else{
+                            showError(resp.msg || '操作失败！')
+                        }
+                    }).fail(function () {
+                        showError('系统错误！')
+                    })
+                }
+            });
+            var id = row.id;
+        }else{
+            showError('请先选择需要禁用的记录行!');
+        }
+    })
     //进入页面时加载一次数据
     getData(1);
 });

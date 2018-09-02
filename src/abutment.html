@@ -75,67 +75,28 @@
     <form id="edit_system_form" class="clearfix">
         <input name="id" type="hidden">
         <div class="filed-con">
-            <input name="name" class="easyui-textbox" label="姓名:" labelAlign="right" style="width:100%">
+            <input name="name" class="easyui-textbox" labelWidth="120" label="系统名称:" labelAlign="right" style="width:100%">
         </div>
         <div class="filed-con">
-            <input name="phone" class="easyui-textbox" label="手机号:" labelAlign="right" style="width:100%">
+            <input name="dept" class="easyui-textbox" labelWidth="120" label="使用部门:" labelAlign="right" style="width:100%">
         </div>
         <div class="filed-con">
-            <select class="easyui-combobox" name="company" label="所属公司:" labelAlign="right" style="width: 100%">
-                <option value="">请选择</option>
-                <option value="1">大众出租</option>
-                <option value="2">大众租赁</option>
-            </select>
+            <input name="callBackUrl" class="easyui-textbox" labelWidth="120" label="事件通知接口地址:" labelAlign="right" style="width:100%">
         </div>
         <div class="filed-con">
-            <select class="easyui-combobox" name="dept" label="所属部门:" labelAlign="right" style="width: 100%">
-                <option value="">请选择</option>
-                <option value="1">总经理办公室</option>
-                <option value="2">运营部</option>
-            </select>
+            <input name="phone" type="text" class="easyui-textbox" labelWidth="120" label="接收密钥口令手机号:" labelAlign="right" style="width:100%">
         </div>
         <div class="filed-con">
-            <select class="easyui-combobox" name="post" label="岗位:" labelAlign="right" style="width: 100%">
-                <option value="">请选择</option>
-                <option value="1">司机</option>
-                <option value="2">前台</option>
-                <option value="3">账务</option>
-            </select>
-        </div>
-        <div class="filed-con">
-            <select class="easyui-combobox" name="jobStatus" label="是否在职:" labelAlign="right" style="width: 100%">
-                <option value="">请选择</option>
-                <option value="1">在职</option>
-                <option value="2">离职</option>
-            </select>
-        </div>
-        <div class="filed-con">
-            <input name="userName" class="easyui-textbox" label="用户名:" labelAlign="right" style="width:100%">
-        </div>
-        <div class="filed-con">
-            <select class="easyui-combobox" name="accountStatus" label="账户状态:" labelAlign="right" style="width: 100%">
-                <option value="">请选择</option>
-                <option value="1">在用</option>
-                <option value="2">停用</option>
-            </select>
-        </div>
-        <div class="filed-con">
-            <input name="password" type="password" class="easyui-textbox" label="密码:" labelAlign="right" style="width:100%">
-        </div>
-        <div class="filed-con">
-            <input name="repassword" type="password" class="easyui-textbox" label="确认密码:" labelAlign="right" style="width:100%">
+            <input name="sysImg" class="easyui-filebox" label="系统名称图片:" labelWidth="120" labelAlign="right" data-options="buttonText:'请选择图片',accept:'image/*'" style="width:100%">
         </div>
         <div class="filed-con" style="width: 100%">
-            <label class="textbox-label textbox-label-before" style="text-align: right; height: 30px; line-height: 30px;">可用系统:</label>
-            <input class="easyui-checkbox" name="systems" value="1" label="OA:" labelAlign="right" labelWidth="50">
-            <input class="easyui-checkbox" name="systems" value="2" label="钉钉:" labelAlign="right" labelWidth="50">
-            <input class="easyui-checkbox" name="systems" value="3" label="核心业务系统:" labelAlign="right" labelWidth="100">
+            <input multiline="true" name="mark" type="text" class="easyui-textbox" labelWidth="120" label="备注:" labelAlign="right" style="width:100%;height: 60px;padding: 5px"></input>
         </div>
     </form>
 </div>
 <!--弹层的按钮-->
 <div id="editDialog_buttons">
-    <a href="javascript:void(0)" id="save_user_btn" class="easyui-linkbutton c8" style="width:90px">保存</a>
+    <a href="javascript:void(0)" id="save_sys_btn" class="easyui-linkbutton c8" style="width:90px">保存</a>
     <a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:$('#editDialog').dialog('close')" style="width:90px">取消</a>
 </div>
 
