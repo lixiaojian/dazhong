@@ -10,10 +10,11 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="edge"/>
-    <title>对接系统</title>
+    <title>对接系统管理</title>
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/common.css">
     <link rel="stylesheet" href="./lib/easyui-1.6.2/themes/bootstrap/easyui.css">
+    <link rel="stylesheet" href="./lib/easyui-1.6.2/themes/color.css">
 </head>
 <body>
 <div class="easyui-layout">
@@ -26,15 +27,122 @@
         <a href="userManagement.html" class="left-link">用户管理</a>
         <a href="organization.html" class="left-link">组织结构</a>
         <a href="#" class="left-link link-active">对接系统</a>
-        <a href="" class="left-link">钉钉用户管理</a>
+        <a href="dingding.html" class="left-link">钉钉用户管理</a>
         <a href="" class="left-link">平台用户管理</a>
         <a href="" class="left-link">平台日志</a>
         <a href="" class="left-link">接口日志</a>
     </div>
     <!--页面主内容-->
-    <div class="page-content" data-options="region:'center',title:'当前位置：系统对接'"></div>
+    <div class="page-content" data-options="region:'center',title:'当前位置：系统对接管理'">
+        <!--搜索框-->
+        <div class="search-box">
+            <form id="search_form" class="search-form">
+                <div class="filed-con">
+                    <input name="systemName" class="easyui-textbox" label="系统名称:" labelAlign="right" style="width:100%">
+                </div>
+                <div class="filed-con">
+                    <input name="useDept" class="easyui-textbox" label="使用部门:" labelAlign="right" style="width:100%">
+                </div>
+                <div class="filed-con calendar_warpper">
+                    <label class="textbox-label textbox-label-before" style="text-align: right; height: 30px; line-height: 30px;">创建日期:</label>
+                    <input class="easyui-datebox" name="startDate" sharedCalendar="#search_calendar"> -
+                    <input class="easyui-datebox" name="endDate" sharedCalendar="#search_calendar">
+                    <div id="search_calendar" class="easyui-calendar"></div>
+                </div>
+                <div class="filed-con">
+                    <a id="search_btn" href="javascript:;" data-options="width:80" class="easyui-linkbutton c8 search-btn">查询</a>
+                </div>
+            </form>
+        </div>
+        <!--列表区域-->
+        <div class="data-list">
+            <!--按钮区域-->
+            <div class="btn-box" id="add_edit_user_btns">
+                <a id="add_sys_btn" data-options="width:80" href="javascript:;" class="easyui-linkbutton c8">新增</a>
+                <a id="edit_sys_btn" data-options="width:80" href="javascript:;" class="easyui-linkbutton c8">修改</a>
+                <a id="disabled_sys_btn" data-options="width:80" href="javascript:;" class="easyui-linkbutton c8">禁用</a>
+            </div>
+            <!--表格-->
+            <table id="systemListTable"></table>
+            <!--分页-->
+            <div id="systemlist_pagination"></div>
+        </div>
+    </div>
 </div>
+
+<!--弹层-->
+<div id="editDialog" class="easyui-dialog edit-cloum2-dialog" style="width:800px" data-options="closed:true,modal:true,border:'thin',buttons:'#editDialog_buttons'">
+    <form id="edit_system_form" class="clearfix">
+        <input name="id" type="hidden">
+        <div class="filed-con">
+            <input name="name" class="easyui-textbox" label="姓名:" labelAlign="right" style="width:100%">
+        </div>
+        <div class="filed-con">
+            <input name="phone" class="easyui-textbox" label="手机号:" labelAlign="right" style="width:100%">
+        </div>
+        <div class="filed-con">
+            <select class="easyui-combobox" name="company" label="所属公司:" labelAlign="right" style="width: 100%">
+                <option value="">请选择</option>
+                <option value="1">大众出租</option>
+                <option value="2">大众租赁</option>
+            </select>
+        </div>
+        <div class="filed-con">
+            <select class="easyui-combobox" name="dept" label="所属部门:" labelAlign="right" style="width: 100%">
+                <option value="">请选择</option>
+                <option value="1">总经理办公室</option>
+                <option value="2">运营部</option>
+            </select>
+        </div>
+        <div class="filed-con">
+            <select class="easyui-combobox" name="post" label="岗位:" labelAlign="right" style="width: 100%">
+                <option value="">请选择</option>
+                <option value="1">司机</option>
+                <option value="2">前台</option>
+                <option value="3">账务</option>
+            </select>
+        </div>
+        <div class="filed-con">
+            <select class="easyui-combobox" name="jobStatus" label="是否在职:" labelAlign="right" style="width: 100%">
+                <option value="">请选择</option>
+                <option value="1">在职</option>
+                <option value="2">离职</option>
+            </select>
+        </div>
+        <div class="filed-con">
+            <input name="userName" class="easyui-textbox" label="用户名:" labelAlign="right" style="width:100%">
+        </div>
+        <div class="filed-con">
+            <select class="easyui-combobox" name="accountStatus" label="账户状态:" labelAlign="right" style="width: 100%">
+                <option value="">请选择</option>
+                <option value="1">在用</option>
+                <option value="2">停用</option>
+            </select>
+        </div>
+        <div class="filed-con">
+            <input name="password" type="password" class="easyui-textbox" label="密码:" labelAlign="right" style="width:100%">
+        </div>
+        <div class="filed-con">
+            <input name="repassword" type="password" class="easyui-textbox" label="确认密码:" labelAlign="right" style="width:100%">
+        </div>
+        <div class="filed-con" style="width: 100%">
+            <label class="textbox-label textbox-label-before" style="text-align: right; height: 30px; line-height: 30px;">可用系统:</label>
+            <input class="easyui-checkbox" name="systems" value="1" label="OA:" labelAlign="right" labelWidth="50">
+            <input class="easyui-checkbox" name="systems" value="2" label="钉钉:" labelAlign="right" labelWidth="50">
+            <input class="easyui-checkbox" name="systems" value="3" label="核心业务系统:" labelAlign="right" labelWidth="100">
+        </div>
+    </form>
+</div>
+<!--弹层的按钮-->
+<div id="editDialog_buttons">
+    <a href="javascript:void(0)" id="save_user_btn" class="easyui-linkbutton c8" style="width:90px">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:$('#editDialog').dialog('close')" style="width:90px">取消</a>
+</div>
+
 <script src="./lib/jquery-1.12.4/jquery.min.js"></script>
 <script src="./lib/easyui-1.6.2/jquery.easyui.min.js"></script>
+<script src="./lib/easyui-1.6.2/locale/easyui-lang-zh_CN.js"></script>
+<script src="./javascript/common.js"></script>
+<script src="./javascript/abutment.js"></script>
 </body>
 </html>

@@ -1,0 +1,14 @@
+{
+  "code":0,
+  "page":{
+    "pageSize":10,
+    "pageNumber":1,
+    "total":87
+  },
+  "data":[
+    {"id":1,"name":"OA","dept":"全集团","createTime":"2018-09-01 12:12:00","creater":"张三","updateTime":"2018-09-01 14:12:00","updater":"李四"},
+    {"id":2,"name":"OB","dept":"大众交通","createTime":"2018-09-02 12:12:00","creater":"李四","updateTime":"2018-09-02 14:12:00","updater":"张三"},
+    {"id":3,"name":"OC","dept":"别克","createTime":"2018-09-01 12:12:00","creater":"张三","updateTime":"2018-09-01 14:12:00","updater":"李四"},
+    {"id":4,"name":"OD","dept":"全集团","createTime":"2018-09-01 12:12:00","creater":"张三","updateTime":"2018-09-01 14:12:00","updater":"李四"}
+  ]
+}

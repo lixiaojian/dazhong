@@ -118,7 +118,15 @@ html,body{
     width: 155px;
     padding: 5px;
 }
-
+.search-box .calendar_warpper{
+    width: 350px;
+}
+.search-box .calendar_warpper input{
+    width: 120px;
+}
+.easyui-calendar td{
+    vertical-align: middle;
+}
 /*主内容*/
 .data-list .btn-box{
     text-align: right;
@@ -149,13 +157,13 @@ html,body{
     vertical-align: middle;
 }
 
-/*添加编辑用户的弹层*/
-.edit-user-dialog .filed-con{
+/*2列添加编辑的弹层*/
+.edit-cloum2-dialog .filed-con{
     display: inline-block;
     width: 50%;
     float: left;
 }
-.edit-user-dialog form{
+.edit-cloum2-dialog form{
     margin: 0;
     padding: 20px;
 }
