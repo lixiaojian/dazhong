@@ -1,0 +1,187 @@
+/**
+ * Created by 872458899@qq.com on 2018/9/2.
+ */
+;$(function () {
+    //搜索的表单
+    var searchForm = document.getElementById('search_form');
+    //表格
+    var userListTable = $('#userListTable');
+    //编辑和添加用户的form
+    var editUserForm = $('#edit_user_form');
+    //编辑和添加用户的弹层
+    var editDialog = $('#editDialog');
+
+    /**
+     * 去请求数据
+     * @param pageNumber 页数
+     */
+    function getData(pageNumber) {
+        pageNumber = pageNumber?(pageNumber<1?1:pageNumber):1;
+        $.ajax({
+            url:apiUrlBase+'userList.json',
+            method:'POST',
+            dataType:'json',
+            data:{
+                pageNumber:pageNumber,
+                userName:searchForm.userName.value,
+                phone:searchForm.phone.value,
+                name:searchForm.name.value,
+                company:searchForm.company.value,
+                accountStatus:searchForm.accountStatus.value
+            }
+        }).done(function (resp) {
+            if(resp.code === successCode){
+                renderTable(resp);
+            }else{
+                showError(resp.msg || '获取数据失败');
+            }
+        }).fail(function (err){
+            //请求失败
+            showError('服务器错误!');
+        });
+    };
+
+    /**
+     * 渲染数据
+     * @param data 数据
+     */
+    function renderTable(respData) {
+        var data = respData.data;
+        var page = respData.page;
+        userListTable.datagrid({
+            data:data,
+            fitColumns:true,
+            fit:true,
+            striped:true,
+            singleSelect:true,
+            columns:[[
+                {field:'id','title':'',checkbox:true},
+                {field:'company',title:'所属公司',align:'center'},
+                {field:'name',title:'姓名',align:'center'},
+                {field:'phone',title:'手机号码',align:'center'},
+                {field:'userName',title:'用户名',align:'center'},
+                {field:'accountStatus',title:'账户状态',align:'center',
+                    formatter: function(value,row,index){
+                        return value == 2?'停用':'在用';
+                    }
+                }
+            ]]
+        });
+        initPagination(page.pageSize,page.pageNumber,page.total);
+    }
+
+    /**
+     * 初始化表格的分页
+     * @param pageSize
+     * @param pageNumber
+     * @param total
+     */
+    function initPagination(pageSize,pageNumber,total){
+        pageSize = pageSize || 10;
+        $('#userlist_pagination').pagination({
+            total:total,
+            pageNumber:pageNumber,
+            pageSize:pageSize,
+            showPageList:false,
+            showRefresh:false,
+            beforePageText: '第',
+            afterPageText: '页    共 {pages} 页',
+            onSelectPage:function (pageNumber,pageSize) {
+                getData(pageNumber);
+            }
+        });
+    }
+    //点击搜索按钮
+    $('#search_btn').on('click',function () {
+        //只要是点击按钮就去搜索第一页的数据，所以这里固定传1
+        getData(1);
+    });
+    //点击新增账户按钮
+    $('#add_user_btn').on('click',function (e) {
+        e.stopPropagation();
+        //显示弹层
+        editDialog.dialog('open').dialog('center').dialog('setTitle','添加用户');
+        //清空弹层的数据
+        editUserForm.form('clear');
+    });
+    //点击编辑按钮
+    $('#edit_user_btn').on('click',function (e) {
+        e.stopPropagation();
+        //获取选中的行
+        var row = userListTable.datagrid('getSelected');
+        if(row){
+            editDialog.dialog('open').dialog('center').dialog('setTitle','设置用户');
+            //数据回填 如果列表数据不全，这里可以先取记录id 然后通过id再去加载一次详情
+            editUserForm.form('load',row);
+        }else{
+            showError('请先选择需要编辑的记录行!');
+        }
+    });
+    //点击保存按钮
+    $('#save_user_btn').on('click',function (e) {
+        e.stopPropagation();
+        // todo 参考userManagement.js 的保存方法
+    })
+    //点击停用按钮
+    $('#disable_user_btn').on('click',function (e) {
+        e.stopPropagation();
+        //获取选中的行
+        var row = userListTable.datagrid('getSelected');
+        if(row){
+            $.messager.confirm('确认提示','您确定要停用该用户?',function(r){
+                //如果点击了确定按钮
+                if (r){
+                    $.ajax({
+                        url:apiUrlBase+'ok.json',
+                        method: 'GET',
+                        data:{
+                            id:row.id
+                        }
+                    }).done(function (resp) {
+                        if(resp.code === successCode){
+                            showSuccess('停用成功！');
+                        }else{
+                            showError(resp.msg || '操作失败！')
+                        }
+                    }).fail(function () {
+                        showError('系统错误！')
+                    })
+                }
+            });
+        }else{
+            showError('请先选择需要停用的记录行!');
+        }
+    });
+    //点击恢复按钮
+    $('#undisable_user_btn').on('click',function (e) {
+        e.stopPropagation();
+        //获取选中的行
+        var row = userListTable.datagrid('getSelected');
+        if(row){
+            $.messager.confirm('确认提示','您确定要恢复该用户?',function(r){
+                //如果点击了确定按钮
+                if (r){
+                    $.ajax({
+                        url:apiUrlBase+'ok.json',
+                        method: 'GET',
+                        data:{
+                            id:row.id
+                        }
+                    }).done(function (resp) {
+                        if(resp.code === successCode){
+                            showSuccess('恢复成功！');
+                        }else{
+                            showError(resp.msg || '操作失败！')
+                        }
+                    }).fail(function () {
+                        showError('系统错误！')
+                    })
+                }
+            });
+        }else{
+            showError('请先选择需要恢复的记录行!');
+        }
+    })
+    //页面加载时去加载一次数据
+    getData(1);
+});

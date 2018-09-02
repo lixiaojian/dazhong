@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="edge"/>
+    <title>接口日志</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./lib/easyui-1.6.2/themes/bootstrap/easyui.css">
+    <link rel="stylesheet" href="./lib/easyui-1.6.2/themes/color.css">
+</head>
+<body>
+<div class="easyui-layout">
+    <!--页头-->
+    <div class="page-title" data-options="region:'north'" style="height: 60px">
+        <img src="images/common/logo.png" alt="">大众交易统一认证平台
+    </div>
+    <!--左边导航-->
+    <div data-options="region:'west',title:'功能导航',split:true" style="width:200px;">
+        <a href="userManagement.html" class="left-link">用户管理</a>
+        <a href="organization.html" class="left-link">组织结构</a>
+        <a href="abutment.html" class="left-link">对接系统</a>
+        <a href="dingding.html" class="left-link">钉钉用户管理</a>
+        <a href="platform.html" class="left-link">平台用户管理</a>
+        <a href="platformLog.html" class="left-link">平台日志</a>
+        <a href="#" class="left-link link-active">接口日志</a>
+    </div>
+    <!--页面主内容-->
+    <div class="page-content" data-options="region:'center',title:'当前位置：接口日志'">
+        <!--搜索框-->
+        <div class="search-box">
+            <form id="search_form" class="search-form">
+                <div class="filed-con">
+                    <input name="userName" class="easyui-textbox" label="用户名:" labelAlign="right" style="width:100%">
+                </div>
+                <div class="filed-con">
+                    <input name="phone" class="easyui-textbox" label="手机号:" labelAlign="right" style="width:100%">
+                </div>
+                <div class="filed-con">
+                    <input name="name" class="easyui-textbox" label="姓名:" labelAlign="right" style="width:100%">
+                </div>
+                <div class="filed-con">
+                    <select class="easyui-combobox" name="company" label="所属公司:" labelAlign="right" style="width: 100%">
+                        <option value="">请选择</option>
+                        <option value="1">大众出租</option>
+                        <option value="2">大众租赁</option>
+                    </select>
+                </div>
+                <div class="filed-con">
+                    <select class="easyui-combobox" name="accountStatus" label="账户状态:" labelAlign="right" style="width: 100%">
+                        <option value="">请选择</option>
+                        <option value="1">在用</option>
+                        <option value="2">停用</option>
+                    </select>
+                </div>
+                <div class="filed-con">
+                    <a id="search_btn" href="javascript:;" data-options="width:80" class="easyui-linkbutton c8 search-btn">查询</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="./lib/jquery-1.12.4/jquery.min.js"></script>
+<script src="./lib/easyui-1.6.2/jquery.easyui.min.js"></script>
+</body>
+</html>

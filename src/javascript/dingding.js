@@ -177,7 +177,6 @@
                     })
                 }
             });
-            var id = row.id;
         }else{
             showError('请先选择需要删除的记录行!');
         }
