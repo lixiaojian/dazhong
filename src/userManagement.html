@@ -26,7 +26,7 @@
     <div data-options="region:'west',title:'功能导航',split:true" style="width:200px;">
         <a href="#" class="left-link link-active">用户管理</a>
         <a href="organization.html" class="left-link">组织结构</a>
-        <a href="" class="left-link">对接系统</a>
+        <a href="abutment.html" class="left-link">对接系统</a>
         <a href="" class="left-link">钉钉用户管理</a>
         <a href="" class="left-link">平台用户管理</a>
         <a href="" class="left-link">平台日志</a>
@@ -65,12 +65,16 @@
                 </div>
             </form>
         </div>
+        <!--列表区域-->
         <div class="data-list">
+            <!--按钮区域-->
             <div class="btn-box" id="add_edit_user_btns">
                 <a id="add_user_btn" data-options="width:80" href="javascript:;" class="easyui-linkbutton c8 add_user_btn">新增账户</a>
                 <a id="edit_user_btn" data-options="width:80" href="javascript:;" class="easyui-linkbutton c8 edit_user_btn">设置账户</a>
             </div>
+            <!--表格-->
             <table id="userListTable"></table>
+            <!--分页-->
             <div id="userlist_pagination"></div>
         </div>
     </div>

@@ -1,0 +1,9 @@
+[
+  {"id":"1","text":"大众交通集团","state":"closed"},
+  {"id":"2","text":"上海世合实业有限公司","state":"closed"},
+  {"id":"3","text":"世合公司本部","state":"closed"},
+  {"id":"4","text":"项目工程部","state":"open"},
+  {"id":"5","text":"计划账务部","state":"open"},
+  {"id":"6","text":"总经理室","state":"open"},
+  {"id":"7","text":"市场营销部","state":"open"}
+]
