@@ -39,6 +39,8 @@ function showSuccess(msg,callback) {
     var pageNav = $('.left-link');
     //中间的主内容区域
     var pageContent = $('#main_content');
+    //主内容面板
+    var contentPanel = $('#app').layout('panel','center');
     //点击导航
     pageNav.on('click',function (e) {
         e.stopPropagation();
@@ -51,8 +53,10 @@ function showSuccess(msg,callback) {
         pageNav.removeClass('link-active');
         target.addClass('link-active');
         var pageName = target.data('page');
+        var title = target.html();
         //重新加载新的内容
         pageContent.panel('refresh','./'+pageName+'_tpl.html');
+        contentPanel.panel('setTitle','当前位置：'+title);
     })
 
     //初始化页面时加载用户管理的内容
