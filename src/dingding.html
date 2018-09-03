@@ -18,14 +18,14 @@
     <link rel="stylesheet" href="./lib/easyui-1.6.2/themes/icon.css">
 </head>
 <body>
-<div class="easyui-layout">
+<div class="easyui-layout" data-options="fit:true">
     <!--页头-->
     <div class="page-title" data-options="region:'north',href:'pageHeader_tpl.html'" style="height: 60px"></div>
     <!--左边导航-->
     <div data-options="region:'west',title:'功能导航',split:true,href:'leftnav_tpl.html'" style="width:200px;"></div>
     <!--页面主内容-->
     <div class="page-content" data-options="region:'center',title:'当前位置：钉钉用户管理'">
-        <div class="easyui-layout">
+        <div class="easyui-layout" data-options="fit:true">
             <!--组织架构-->
             <div data-options="region:'west',split:true" style="width:300px;background: #fff">
                 <div style="text-align: right;padding: 10px">
