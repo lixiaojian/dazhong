@@ -9,6 +9,8 @@
     //编辑和添加用户的弹层
     var detailDialog = $('#detailDialog');
 
+    //设置导航的选中状态
+    setActive('interfaceLog');
     /**
      * 去请求数据
      * @param pageNumber 页数

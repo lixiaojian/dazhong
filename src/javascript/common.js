@@ -32,3 +32,16 @@ function showSuccess(msg,callback) {
         fn:callback||function () {}
     });
 }
+
+let count = 0;
+function setActive(className){
+    count++
+    setTimeout(function () {
+        var nav = $('a.'+className);
+        if(nav.length === 0 && count<10){
+            setActive(className)
+        }else{
+            nav.addClass('link-active');
+        }
+    },100);
+}

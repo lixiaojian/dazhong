@@ -19,20 +19,9 @@
 <body>
 <div class="easyui-layout">
     <!--页头-->
-    <div class="page-title" data-options="region:'north'" style="height: 60px">
-        <img src="images/common/logo.png" alt="">大众交易统一认证平台
-    </div>
+    <div class="page-title" data-options="region:'north',href:'pageHeader_tpl.html'" style="height: 60px"></div>
     <!--左边导航-->
-    <div data-options="region:'west',title:'功能导航',split:true" style="width:200px;">
-        <a href="userManagement.html" class="left-link">用户管理</a>
-        <a href="organization.html" class="left-link">组织结构</a>
-        <a href="abutment.html" class="left-link">对接系统</a>
-        <a href="dingding.html" class="left-link">钉钉用户管理</a>
-        <a href="platform.html" class="left-link">平台用户管理</a>
-        <a href="platformRole.html" class="left-link">平台角色管理</a>
-        <a href="#" class="left-link link-active">平台日志</a>
-        <a href="interfaceLog.html" class="left-link">接口日志</a>
-    </div>
+    <div data-options="region:'west',title:'功能导航',split:true,href:'leftnav_tpl.html'" style="width:200px;"></div>
     <!--页面主内容-->
     <div class="page-content" data-options="region:'center',title:'当前位置：平台日志'">
         <!--搜索框-->
