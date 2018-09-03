@@ -10,8 +10,6 @@
     var editSystemForm = $('#edit_system_form');
     //编辑和添加用户的弹层
     var editDialog = $('#editDialog');
-    //设置导航的选中状态
-    setActive('abutment');
     /**
      * 去请求数据
      * @param pageNumber 页数

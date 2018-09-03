@@ -39,7 +39,7 @@ html,body{
     padding-right: 10px;
 }
 .layout-panel .page-content{
-    padding:5px;
+    padding:5px 10px;
 }
 .layout-panel-west .layout-body{
     flex-direction: column;
@@ -184,4 +184,29 @@ html,body{
 .detail-item{
     padding: 2px 0;
     font-size: 14px;
+}
+
+#main_content{
+    border: none;
+    height: 100%;
+    width: 100%!important;
+}
+
+.sub-conent{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+.sub-conent-left{
+    width: 300px;
+    border: 1px solid #d4d4d4;
+    margin-right: 6px;
+}
+.sub-conent-right{
+    flex: 1;
+    border: 1px solid #d4d4d4;
+    padding: 0 10px;
+}
+.page-content>.panel-htop{
+    height: 100%;
 }

@@ -1,0 +1,55 @@
+<!--搜索框-->
+<div class="search-box">
+    <form id="search_form" class="search-form">
+        <div class="filed-con">
+            <input name="roleName" class="easyui-textbox" label="角色名称:" labelAlign="right" style="width:100%">
+        </div>
+        <div class="filed-con">
+            <a id="search_btn" href="javascript:;" data-options="width:80" class="easyui-linkbutton c8">查询</a>
+        </div>
+    </form>
+</div>
+<!--列表区域-->
+<div class="data-list">
+    <!--按钮区域-->
+    <div class="btn-box" id="add_edit_user_btns">
+        <a id="add_role_btn" data-options="width:80" href="javascript:;" class="easyui-linkbutton c8">新增</a>
+        <a id="edit_role_btn" data-options="width:80" href="javascript:;" class="easyui-linkbutton c8">编辑</a>
+        <a id="delete_role_btn" data-options="width:80" href="javascript:;" class="easyui-linkbutton c5">删除</a>
+    </div>
+    <!--表格-->
+    <table id="roleListTable"></table>
+    <!--分页-->
+    <div id="rolelist_pagination"></div>
+</div>
+
+
+<!--弹层-->
+<div id="editDialog" class="easyui-dialog" style="width:400px;padding: 20px"
+     data-options="closed:true,modal:true,border:'thin',buttons:'#editDialog_buttons'">
+    <form id="edit_role_form" class="clearfix">
+        <input name="id" type="hidden">
+        <div class="filed-con">
+            <input name="roleName" class="easyui-textbox" labelWidth="70" label="角色名称:" labelAlign="right"
+                   style="width:100%">
+        </div>
+        <div class="filed-con">
+            <input multiline="true" name="desc" type="text" class="easyui-textbox" labelWidth="70" label="角色描述:"
+                   labelAlign="right" style="width:100%;height: 60px;padding: 5px"></input>
+        </div>
+        <div class="filed-con">
+            <label class="textbox-label textbox-label-before"
+                   style="text-align: right; width: 70px; height: 30px; line-height: 30px;">权限设置:</label>
+            <ul id="roles_tree" style="display: inline-block;vertical-align: top;max-height: 300px;overflow: auto;"
+                class="easyui-tree"></ul>
+        </div>
+    </form>
+</div>
+<!--弹层的按钮-->
+<div id="editDialog_buttons">
+    <a href="javascript:void(0)" id="save_role_btn" class="easyui-linkbutton c8" style="width:90px">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:$('#editDialog').dialog('close')"
+       style="width:90px">取消</a>
+</div>
+
+<script src="./javascript/platformRole.js"></script>

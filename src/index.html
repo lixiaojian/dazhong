@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge">
+    <title>大众交易统一认证平台</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./lib/easyui-1.6.2/themes/bootstrap/easyui.css">
+    <link rel="stylesheet" href="./lib/easyui-1.6.2/themes/color.css">
+    <link rel="stylesheet" href="./lib/easyui-1.6.2/themes/icon.css">
+</head>
+<body>
+<div class="easyui-layout" data-options="fit:true">
+    <!--页头-->
+    <div class="page-title" data-options="region:'north'" style="height: 60px">
+        <img src="images/common/logo.png" alt="">大众交易统一认证平台
+    </div>
+    <!--左边导航-->
+    <div data-options="region:'west',title:'功能导航',split:true" style="width:200px;">
+        <a href="javascript:;" data-page="userManagement" class="left-link link-active">用户管理</a>
+        <a href="javascript:;" data-page="organization" class="left-link">组织结构</a>
+        <a href="javascript:;" data-page="abutment" class="left-link">对接系统</a>
+        <a href="javascript:;" data-page="dingding" class="left-link">钉钉用户管理</a>
+        <a href="javascript:;" data-page="platform" class="left-link">平台用户管理</a>
+        <a href="javascript:;" data-page="platformRole" class="left-link">平台角色管理</a>
+        <a href="javascript:;" data-page="platformLog" class="left-link">平台日志</a>
+        <a href="javascript:;" data-page="interfaceLog" class="left-link">接口日志</a>
+    </div>
+    <!--页面主内容-->
+    <div class="page-content" data-options="region:'center',title:'当前位置：系统对接管理'">
+        <div id="main_content" class="easyui-panel page-main-content"></div>
+    </div>
+</div>
+<script src="./lib/jquery-1.12.4/jquery.min.js"></script>
+<script src="./lib/easyui-1.6.2/jquery.easyui.min.js"></script>
+<script src="./lib/easyui-1.6.2/locale/easyui-lang-zh_CN.js"></script>
+<script src="./javascript/common.js"></script>
+
+<!--<script src="./javascript/abutment.js"></script>-->
+</body>
+</html>

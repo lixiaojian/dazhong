@@ -13,8 +13,6 @@
     //新增的表单
     var addForm = $('#add_user_form');
 
-    //设置导航的选中状态
-    setActive('dingding');
     /**
      * 去请求数据
      * @param pageNumber 页数

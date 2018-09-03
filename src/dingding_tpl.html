@@ -1,0 +1,53 @@
+<div class="sub-conent">
+    <div class="sub-conent-left">
+        <div style="text-align: right;padding: 10px">
+            <a id="synchronize_dept" href="javascript:;" class="easyui-linkbutton c8" data-options="iconCls:'icon-reload'">同步</a>
+        </div>
+        <ul style="padding: 10px" id="dept_tree"></ul>
+    </div>
+    <div class="sub-conent-right">
+        <!--列表区域-->
+        <div class="data-list">
+            <!--按钮区域-->
+            <div class="btn-box" id="add_edit_user_btns">
+                <a id="add_user_btn" data-options="width:80" href="javascript:;" class="easyui-linkbutton c8">新增</a>
+                <a id="delete_user_btn" data-options="width:80" href="javascript:;" class="easyui-linkbutton c5">删除</a>
+            </div>
+            <!--表格-->
+            <table id="userListTable"></table>
+            <!--分页-->
+            <div id="userlist_pagination"></div>
+        </div>
+    </div>
+</div>
+
+<!--弹层-->
+<div id="addDialog" class="easyui-dialog" style="width:400px;padding: 20px;" data-options="closed:true,modal:true,border:'thin',buttons:'#editDialog_buttons'">
+    <form id="add_user_form" class="clearfix">
+        <input name="deptId" type="hidden">
+        <div class="filed-con">
+            <select class="easyui-combobox" name="name" label="姓名:" labelWidth="60" labelAlign="right" style="width: 100%">
+                <option value="">请选择</option>
+                <option value="1">张三</option>
+                <option value="2">李四</option>
+                <option value="3">王五</option>
+                <option value="4">赵六</option>
+            </select>
+        </div>
+        <div class="filed-con">
+            <select class="easyui-combobox" name="position" label="职位:" labelWidth="60" labelAlign="right" style="width: 100%">
+                <option value="">请选择</option>
+                <option value="1">人事</option>
+                <option value="2">账务</option>
+                <option value="3">经理</option>
+            </select>
+        </div>
+    </form>
+</div>
+<!--弹层的按钮-->
+<div id="editDialog_buttons">
+    <a href="javascript:void(0)" id="save_user_btn" class="easyui-linkbutton c8" style="width:90px">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:$('#addDialog').dialog('close')" style="width:90px">取消</a>
+</div>
+
+<script src="./javascript/dingding.js"></script>

@@ -33,15 +33,28 @@ function showSuccess(msg,callback) {
     });
 }
 
-let count = 0;
-function setActive(className){
-    count++
-    setTimeout(function () {
-        var nav = $('a.'+className);
-        if(nav.length === 0 && count<10){
-            setActive(className)
-        }else{
-            nav.addClass('link-active');
+
+;$(function () {
+    //左边导航
+    var pageNav = $('.left-link');
+    //中间的主内容区域
+    var pageContent = $('#main_content');
+    //点击导航
+    pageNav.on('click',function (e) {
+        e.stopPropagation();
+        e.preventDefault();
+        var target = $(e.target);
+        // 如果当前导航已是选中状态 直接返回
+        if(target.hasClass('link-active')){
+            return;
         }
-    },100);
-}
+        pageNav.removeClass('link-active');
+        target.addClass('link-active');
+        var pageName = target.data('page');
+        //重新加载新的内容
+        pageContent.panel('refresh','./'+pageName+'_tpl.html');
+    })
+
+    //初始化页面时加载用户管理的内容
+    pageContent.panel('refresh','./userManagement_tpl.html');
+});

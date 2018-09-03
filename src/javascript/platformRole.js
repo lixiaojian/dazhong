@@ -14,8 +14,6 @@
     //所有的权限列表
     var powers = null;
 
-    //设置导航的选中状态
-    setActive('platformRole');
     /**
      * 去请求数据
      * @param pageNumber 页数
