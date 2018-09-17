@@ -66,7 +66,7 @@
                 {field:'accountStatus',title:'账户状态',align:'center',width:'10%',
                     formatter: function(value,row,index){
                         return value == 2?'停用':'在用';
-                    }
+                        add_user_btn      }
                 },
                 {field:'creatTime',title:'创建时间',align:'center',width:'10%'},
                 {field:'creater',title:'创建者',align:'center',width:'10%'},

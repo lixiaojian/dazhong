@@ -53,6 +53,7 @@ html,body{
     padding: 0 30px;
     background-color: #00a8ed;
     color: #fff;
+    position: relative;
 }
 .layout-panel-north .panel-body{
     display: flex;
@@ -209,4 +210,17 @@ html,body{
 }
 .page-content>.panel-htop{
     height: 100%;
+}
+
+.user-message-box{
+    font-size: 16px;
+    position: absolute;
+    right: 20px;
+}
+.user-message-box .link{
+    color: #fff;
+    padding: 0 5px;
+}
+.change-password-form{
+    padding: 20px;
 }

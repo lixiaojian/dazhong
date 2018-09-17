@@ -20,6 +20,7 @@
     <!--页头-->
     <div class="page-title" data-options="region:'north'" style="height: 60px">
         <img src="images/common/logo.png" alt="">大众交易统一认证平台
+        <div class="user-message-box"><a href="javascript:;" id="current_user_name" class="link">当前用户</a><a href="#" class="link">退出登录</a></div>
     </div>
     <!--左边导航-->
     <div data-options="region:'west',title:'功能导航',split:true" style="width:200px;">
@@ -37,6 +38,33 @@
         <div id="main_content" class="easyui-panel page-main-content"></div>
     </div>
 </div>
+
+
+<!--弹层-->
+<div id="updatePasswordDialog" class="easyui-dialog edit-cloum-dialog" style="width:400px" data-options="closed:true,modal:true,border:'thin',buttons:'#updatePasswordDialog_buttons'">
+    <form id="update_password_form" method="post" class="change-password-form">
+        <div class="filed-con">
+            <input class="easyui-textbox" value="13812345678" label="用户名:" name="userName" type="text" data-options="readonly:true" style="width: 100%">
+        </div>
+        <div class="filed-con">
+            <input class="easyui-textbox" label="旧密码:" name="oldPassword" type="password" style="width: 100%">
+        </div>
+        <div class="filed-con">
+            <input class="easyui-textbox" label="新密码:" name="password" type="password" style="width: 100%">
+        </div>
+        <div class="filed-con">
+            <input class="easyui-textbox" label="确认密码:" name="rePassword" type="password" style="width: 100%">
+        </div>
+    </form>
+</div>
+<!--弹层的按钮-->
+<div id="updatePasswordDialog_buttons">
+    <a href="javascript:void(0)" id="save_password_btn" class="easyui-linkbutton c8" style="width:90px">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:$('#updatePasswordDialog').dialog('close')"
+       style="width:90px">取消</a>
+</div>
+
+
 <script src="./lib/jquery-1.12.4/jquery.min.js"></script>
 <script src="./lib/easyui-1.6.2/jquery.easyui.min.js"></script>
 <script src="./lib/easyui-1.6.2/locale/easyui-lang-zh_CN.js"></script>
