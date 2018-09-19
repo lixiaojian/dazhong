@@ -226,3 +226,7 @@ html,body{
 .change-password-form{
     padding: 20px;
 }
+.datagrid-view .datagrid-cell{
+    word-break: break-all;
+    white-space: unset;
+}
