@@ -5,7 +5,7 @@
     //搜索的表单
     var searchForm = document.getElementById('search_form');
     //表格
-    var userListTable = $('#userListTable');
+    var userListTable = $('#userListTableBody');
     //编辑和添加用户的form
     var editUserForm = $('#edit_user_form');
     //编辑和添加用户的弹层
@@ -47,33 +47,43 @@
      * @param data 数据
      */
     function renderTable(respData) {
-        var data = respData.data;
+        var data = respData.data || [];
         var page = respData.page;
 
-        userListTable.datagrid({
-            data:data,
-            fitColumns:true,
-            fit:true,
-            striped:true,
-            singleSelect:true,
-            columns:[[
-                {field:'id','title':'',checkbox:true},
-                {field:'userName',title:'用户名',align:'center',width:'10%'},
-                {field:'name',title:'姓名',align:'center',width:'10%'},
-                {field:'company',title:'所属公司',align:'center',width:'10%'},
-                {field:'dept',title:'所属部门',align:'center',width:'10%'},
-                {field:'phone',title:'手机号码',align:'center',width:'10%'},
-                {field:'accountStatus',title:'账户状态',align:'center',width:'10%',
-                    formatter: function(value,row,index){
-                        return value == 2?'停用':'在用';
-                        add_user_btn      }
-                },
-                {field:'creatTime',title:'创建时间',align:'center',width:'10%'},
-                {field:'creater',title:'创建者',align:'center',width:'10%'},
-                {field:'updateTime',title:'修改时间',align:'center',width:'10%'},
-                {field:'updater',title:'修改者',align:'center',width:'10%'}
-            ]]
-        });
+        // userListTable.datagrid({
+        //     data:data,
+        //     fitColumns:true,
+        //     fit:true,
+        //     striped:true,
+        //     singleSelect:true,
+        //     columns:[[
+        //         {field:'id','title':'',checkbox:true},
+        //         {field:'userName',title:'用户名',align:'center',width:'10%'},
+        //         {field:'name',title:'姓名',align:'center',width:'10%'},
+        //         {field:'company',title:'所属公司',align:'center',width:'10%'},
+        //         {field:'dept',title:'所属部门',align:'center',width:'10%'},
+        //         {field:'phone',title:'手机号码',align:'center',width:'10%'},
+        //         {field:'accountStatus',title:'账户状态',align:'center',width:'10%',
+        //             formatter: function(value,row,index){
+        //                 return value == 2?'停用':'在用';
+        //                 add_user_btn      }
+        //         },
+        //         {field:'creatTime',title:'创建时间',align:'center',width:'10%'},
+        //         {field:'creater',title:'创建者',align:'center',width:'10%'},
+        //         {field:'updateTime',title:'修改时间',align:'center',width:'10%'},
+        //         {field:'updater',title:'修改者',align:'center',width:'10%'}
+        //     ]]
+        // });
+        var trTemplate = '<tr><td><input type="checkbox" name="userChecked" value="${id}"></td><td>${userName}</td><td>${name}</td><td>${company}</td><td>${dept}</td><td>${phone}</td><td>${accountStatus}</td><td>${creatTime}</td><td>${creater}</td><td>${updateTime}</td><td>${updater}</td></tr>>'
+        var users = [];
+        data.map(function (user) {
+            var tr = trTemplate.replace(/\${[a-zA-Z]*}/g,function (keyWarpper) {
+                var key = keyWarpper.substring(2, keyWarpper.length - 1);
+                return user[key];
+            })
+            users.push(tr);
+        })
+        $('#userListTableBody').html(users.join(''));
         initPagination(page.pageSize,page.pageNumber,page.total);
     }
     /**
@@ -150,4 +160,11 @@
     })
     //页面刚开始进来时加载一次数据
     getData(1);
+
+    //点击行
+    $('#userListTableBody').on('click','tr',function () {
+        var checkBox = $(this).find('input[name="userChecked"]');
+        var all checkBox = userListTable.find('input[name="userChecked"]');
+        console.log(checkBox);
+    })
 });

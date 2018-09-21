@@ -1,3 +1,51 @@
+<style>
+    #main_content{
+        display: flex;
+        flex-direction: column;
+    }
+    #main_content .data-list{
+        width: 100%;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    .table-box{
+        flex: 1;
+        overflow: auto;
+        color: #333;
+        border-collapse: separate;
+        border-spacing: 0;
+    }
+    .table-box .data-table{
+        width: 100%;
+        max-width: 100%;
+        border: 1px #d4d4d4 solid;
+    }
+    .data-table thead td{
+        text-align: center;
+    }
+    .data-table tr{
+        height: 32px;
+        line-height: 32px;
+    }
+    .data-table td{
+        border-color: #ccc;
+        border-width: 0 1px 1px 0;
+        border-style: dotted;
+        padding: 0 4px;
+        word-break: break-all;
+    }
+    .table-box .data-table thead td{
+        background: linear-gradient(to bottom,#ffffff 0,#F2F2F2 100%);
+        background-repeat: repeat-x;
+    }
+    .table-box tbody tr:nth-child(2n+2){
+        background-color: #f5f5f5;
+    }
+    .pagination{
+        width: 100%;
+    }
+</style>
 <!--搜索框-->
 <div class="search-box">
     <form id="search_form" class="search-form">
@@ -38,10 +86,29 @@
            class="easyui-linkbutton c8 add_user_btn">新增账户</a>
         <a id="edit_user_btn" data-options="width:80" href="javascript:;" class="easyui-linkbutton c8 edit_user_btn">设置账户</a>
     </div>
-    <!--表格-->
-    <table id="userListTable"></table>
-    <!--分页-->
-    <div id="userlist_pagination"></div>
+    <div class="table-box">
+        <!--表格-->
+        <table class="data-table" id="userListTable">
+            <thead>
+                <tr>
+                    <td></td>
+                    <td>用户名</td>
+                    <td>姓名</td>
+                    <td>所属公司</td>
+                    <td>所属部门</td>
+                    <td>手机号码</td>
+                    <td>账户状态</td>
+                    <td>创建时间</td>
+                    <td>创建者</td>
+                    <td>修改时间</td>
+                    <td>修改者</td>
+                </tr>
+            </thead>
+            <tbody id="userListTableBody"></tbody>
+        </table>
+        <!--分页-->
+        <div id="userlist_pagination"></div>
+    </div>
 </div>
 
 <!--弹层-->
