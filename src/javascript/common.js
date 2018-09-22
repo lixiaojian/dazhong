@@ -33,6 +33,30 @@ function showSuccess(msg,callback) {
     });
 }
 
+/**
+ * 点击表格的行
+ * @param table 表格或表格的tbody
+ * @param checkName 复选框的name
+ */
+function ckilckTableRow(table,checkName) {
+    table.on('click','tr',function () {
+        var checkBox = $(this).find('input[name="'+checkName+'"]');
+        var allCheckBox = table.find('input[name="'+checkName+'"]');
+        if(checkBox.length>0){
+            var tr = checkBox.parent().parent();
+            if(!tr.hasClass('is-active')){
+                for(var i=0,len=allCheckBox.length;i<len;i++){
+                    var c = allCheckBox[i];
+                    var tempTr = $(c).parent().parent();
+                    c.checked = false;
+                    tempTr.removeClass('is-active');
+                }
+                checkBox[0].checked = true;
+                tr.addClass('is-active');
+            }
+        }
+    })
+}
 
 ;$(function () {
     //左边导航

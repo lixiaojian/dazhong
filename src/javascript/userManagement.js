@@ -10,7 +10,7 @@
     var editUserForm = $('#edit_user_form');
     //编辑和添加用户的弹层
     var editDialog = $('#editDialog');
-
+    var allUser = null;
     /**
      * 去请求数据
      * @param pageNumber 页数
@@ -32,7 +32,7 @@
         }).done(function (resp) {
             if(resp.code === successCode){
                 renderTable(resp);
-
+                allUser = resp.data;
             }else{
                 showError(resp.msg || '获取数据失败');
             }
@@ -126,11 +126,14 @@
     $('#edit_user_btn').on('click',function (e) {
         e.stopPropagation();
         //获取选中的行
-        var row = userListTable.datagrid('getSelected');
-        if(row){
+        var checkeBox = userListTable.find('input[name="userChecked"]:checked')[0];
+        if(checkeBox && checkeBox.value){
             editDialog.dialog('open').dialog('center').dialog('setTitle','设置用户');
             //数据回填 如果列表数据不全，这里可以先取记录id 然后通过id再去加载一次详情
-            editUserForm.form('load',row);
+            var user = allUser.filter(function (user) {
+                return user.id == checkeBox.value;
+            })
+            editUserForm.form('load',user[0]);
         }else{
             showError('请先选择需要设置的记录行!');
         }
@@ -162,9 +165,5 @@
     getData(1);
 
     //点击行
-    $('#userListTableBody').on('click','tr',function () {
-        var checkBox = $(this).find('input[name="userChecked"]');
-        var all checkBox = userListTable.find('input[name="userChecked"]');
-        console.log(checkBox);
-    })
+    ckilckTableRow(userListTable,'userChecked');
 });
