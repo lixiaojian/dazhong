@@ -5,7 +5,7 @@
     //搜索的表单
     var searchForm = document.getElementById('search_form');
     //表格
-    var userListTable = $('#userListTable');
+    var userListTable = $('#userListTableBody');
     //编辑和添加用户的form
     var editUserForm = $('#edit_user_form');
     //编辑和添加用户的弹层

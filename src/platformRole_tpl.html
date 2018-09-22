@@ -17,10 +17,23 @@
         <a id="edit_role_btn" data-options="width:80" href="javascript:;" class="easyui-linkbutton c8">编辑</a>
         <a id="delete_role_btn" data-options="width:80" href="javascript:;" class="easyui-linkbutton c5">删除</a>
     </div>
-    <!--表格-->
-    <table id="roleListTable"></table>
-    <!--分页-->
-    <div id="rolelist_pagination"></div>
+
+    <div class="table-box">
+        <!--表格-->
+        <table class="data-table" id="roleListTable">
+            <thead>
+            <tr>
+                <td></td>
+                <td>角色ID</td>
+                <td>角色名称</td>
+                <td>角色描述</td>
+            </tr>
+            </thead>
+            <tbody id="roleListTableBody"></tbody>
+        </table>
+        <!--分页-->
+        <div id="rolelist_pagination"></div>
+    </div>
 </div>
 
 
