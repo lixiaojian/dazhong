@@ -5,7 +5,7 @@
     //搜索的表单
     var searchForm = document.getElementById('search_form');
     //表格
-    var systemListTable = $('#systemListTable');
+    var systemListTable = $('#systemListTableBody');
     //编辑和添加系统的form
     var editSystemForm = $('#edit_system_form');
     //编辑和添加用户的弹层
@@ -47,25 +47,20 @@
         var data = respData.data;
         var page = respData.page;
 
-        systemListTable.datagrid({
-            data:data,
-            fitColumns:true,
-            fit:true,
-            striped:true,
-            singleSelect:true,
-            columns:[[
-                {field:'',checkbox:true,align:'center'},
-                {field:'id',title:'系统ID',align:'center'},
-                {field:'name',title:'系统名称',align:'center'},
-                {field:'dept',title:'使用部门',align:'center'},
-                {field:'createTime',title:'创建时间',align:'center'},
-                {field:'creater',title:'创建者',align:'center'},
-                {field:'updateTime',title:'修改时间',align:'center'},
-                {field:'updater',title:'修改者',align:'center'}
-            ]]
-        });
+        var trTemplate = '<tr><td><input type="checkbox" name="systemChecked" value="${id}"></td><td>${id}</td><td>${name}</td><td>${dept}</td><td>${createTime}</td><td>${creater}</td><td>${updateTime}</td><td>${updater}</td></tr>>';
+        var systems = [];
+        data.map(function (system) {
+            var tr = trTemplate.replace(/\${[a-zA-Z]*}/g,function (keyWarpper) {
+                var key = keyWarpper.substring(2, keyWarpper.length - 1);
+                return system[key];
+            })
+            systems.push(tr);
+        })
+        systemListTable.html(systems.join(''));
         initPagination(page.pageSize,page.pageNumber,page.total);
     }
+    //点击行
+    ckilckTableRow(systemListTable,'systemChecked');
     /**
      * 初始化表格的分页
      * @param pageSize

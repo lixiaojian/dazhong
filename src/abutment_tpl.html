@@ -26,12 +26,28 @@
         <a id="edit_sys_btn" data-options="width:80" href="javascript:;" class="easyui-linkbutton c8">修改</a>
         <a id="disabled_sys_btn" data-options="width:80" href="javascript:;" class="easyui-linkbutton c5">禁用</a>
     </div>
-    <!--表格-->
-    <table id="systemListTable"></table>
-    <!--分页-->
-    <div id="systemlist_pagination"></div>
-</div>
 
+    <div class="table-box">
+        <!--表格-->
+        <table class="data-table" id="systemListTable">
+            <thead>
+            <tr>
+                <td></td>
+                <td>系统ID</td>
+                <td>系统名称</td>
+                <td>使用部门</td>
+                <td>创建时间</td>
+                <td>创建者</td>
+                <td>修改时间</td>
+                <td>修改者</td>
+            </tr>
+            </thead>
+            <tbody id="systemListTableBody"></tbody>
+        </table>
+        <!--分页-->
+        <div id="systemlist_pagination"></div>
+    </div>
+</div>
 
 <!--弹层-->
 <div id="editDialog" class="easyui-dialog edit-cloum2-dialog" style="width:800px" data-options="closed:true,modal:true,border:'thin',buttons:'#editDialog_buttons'">

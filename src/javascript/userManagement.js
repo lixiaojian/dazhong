@@ -50,30 +50,6 @@
         var data = respData.data || [];
         var page = respData.page;
 
-        // userListTable.datagrid({
-        //     data:data,
-        //     fitColumns:true,
-        //     fit:true,
-        //     striped:true,
-        //     singleSelect:true,
-        //     columns:[[
-        //         {field:'id','title':'',checkbox:true},
-        //         {field:'userName',title:'用户名',align:'center',width:'10%'},
-        //         {field:'name',title:'姓名',align:'center',width:'10%'},
-        //         {field:'company',title:'所属公司',align:'center',width:'10%'},
-        //         {field:'dept',title:'所属部门',align:'center',width:'10%'},
-        //         {field:'phone',title:'手机号码',align:'center',width:'10%'},
-        //         {field:'accountStatus',title:'账户状态',align:'center',width:'10%',
-        //             formatter: function(value,row,index){
-        //                 return value == 2?'停用':'在用';
-        //                 add_user_btn      }
-        //         },
-        //         {field:'creatTime',title:'创建时间',align:'center',width:'10%'},
-        //         {field:'creater',title:'创建者',align:'center',width:'10%'},
-        //         {field:'updateTime',title:'修改时间',align:'center',width:'10%'},
-        //         {field:'updater',title:'修改者',align:'center',width:'10%'}
-        //     ]]
-        // });
         var trTemplate = '<tr><td><input type="checkbox" name="userChecked" value="${id}"></td><td>${userName}</td><td>${name}</td><td>${company}</td><td>${dept}</td><td>${phone}</td><td>${accountStatus}</td><td>${creatTime}</td><td>${creater}</td><td>${updateTime}</td><td>${updater}</td></tr>>'
         var users = [];
         data.map(function (user) {
@@ -83,7 +59,7 @@
             })
             users.push(tr);
         })
-        $('#userListTableBody').html(users.join(''));
+        userListTable.html(users.join(''));
         initPagination(page.pageSize,page.pageNumber,page.total);
     }
     /**
