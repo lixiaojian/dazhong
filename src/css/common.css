@@ -270,6 +270,7 @@ html,body{
     border-style: dotted;
     padding: 0 4px;
     word-break: break-all;
+    text-align: center;
 }
 .table-box .data-table thead td{
     background: linear-gradient(to bottom,#ffffff 0,#F2F2F2 100%);

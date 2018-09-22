@@ -5,7 +5,7 @@
     //搜索的表单
     var searchForm = document.getElementById('search_form');
     //表格
-    var interfaceLogListTable = $('#interfaceLogListTable');
+    var interfaceLogListTable = $('#interfaceLogListTableBody');
     //编辑和添加用户的弹层
     var detailDialog = $('#detailDialog');
 
@@ -43,24 +43,21 @@
     function renderTable(respData) {
         var data = respData.data;
         var page = respData.page;
-        interfaceLogListTable.datagrid({
-            data:data,
-            fitColumns:true,
-            fit:true,
-            striped:true,
-            singleSelect:true,
-            columns:[[
-                {field:'',checkbox:true,align:'center'},
-                {field:'id',title:'主键ID',align:'center'},
-                {field:'name',title:'操作数据项名称',align:'center'},
-                {field:'type',title:'操作类型',align:'center'},
-                {field:'company',title:'来源公司',align:'center'},
-                {field:'ip',title:'操作人IP',align:'center'},
-                {field:'dateTime',title:'操作时间',align:'center'}
-            ]]
-        });
+
+        var trTemplate = '<tr><td><input type="checkbox" name="interfaceLogChecked" value="${id}"></td><td>${id}</td><td>${name}</td><td>${type}</td><td>${company}</td><td>${ip}</td><td>${dateTime}</td></tr>';
+        var systems = [];
+        data.map(function (system) {
+            var tr = trTemplate.replace(/\${[a-zA-Z]*}/g,function (keyWarpper) {
+                var key = keyWarpper.substring(2, keyWarpper.length - 1);
+                return system[key];
+            })
+            systems.push(tr);
+        })
+        interfaceLogListTable.html(systems.join(''));
         initPagination(page.pageSize,page.pageNumber,page.total);
     };
+    //点击行
+    ckilckTableRow(interfaceLogListTable,'interfaceLogChecked');
     /**
      * 初始化表格的分页
      * @param pageSize
@@ -93,14 +90,14 @@
     $('#show_detail_btn').on('click',function (e) {
         e.stopPropagation();
         //获取选中的行
-        var row = interfaceLogListTable.datagrid('getSelected');
-        if(row){
+        var checkeBox = interfaceLogListTable.find('input[name="interfaceLogChecked"]:checked')[0];
+        if(checkeBox){
             $.ajax({
                 url: apiUrlBase+'interfaceLogDetail.json',
                 method: 'GET',
                 dataType: 'json',
                 data:{
-                    id:row.id
+                    id:checkeBox.value
                 }
             }).done(function (resp) {
                 if(resp.code === successCode){

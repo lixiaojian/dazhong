@@ -22,10 +22,26 @@
     <div class="btn-box" id="add_edit_user_btns">
         <a id="show_detail_btn" data-options="width:110" href="javascript:;" class="easyui-linkbutton c8">查看操作详情</a>
     </div>
-    <!--表格-->
-    <table id="interfaceLogListTable"></table>
-    <!--分页-->
-    <div id="interfaceLogListPagination"></div>
+
+    <div class="table-box">
+        <!--表格-->
+        <table class="data-table" id="interfaceLogListTable">
+            <thead>
+            <tr>
+                <td></td>
+                <td>主键ID</td>
+                <td>操作数据项名称</td>
+                <td>操作类型</td>
+                <td>来源公司</td>
+                <td>操作人IP</td>
+                <td>操作时间</td>
+            </tr>
+            </thead>
+            <tbody id="interfaceLogListTableBody"></tbody>
+        </table>
+        <!--分页-->
+        <div id="interfaceLogListPagination"></div>
+    </div>
 </div>
 
 <!--弹层-->
