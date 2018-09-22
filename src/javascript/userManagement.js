@@ -50,7 +50,7 @@
         var data = respData.data || [];
         var page = respData.page;
 
-        var trTemplate = '<tr><td><input type="checkbox" name="userChecked" value="${id}"></td><td>${userName}</td><td>${name}</td><td>${company}</td><td>${dept}</td><td>${phone}</td><td>${accountStatus}</td><td>${creatTime}</td><td>${creater}</td><td>${updateTime}</td><td>${updater}</td></tr>>'
+        var trTemplate = '<tr><td><input type="checkbox" name="userChecked" value="${id}"></td><td>${userName}</td><td>${name}</td><td>${company}</td><td>${dept}</td><td>${phone}</td><td>${accountStatus}</td><td>${creatTime}</td><td>${creater}</td><td>${updateTime}</td><td>${updater}</td></tr>'
         var users = [];
         data.map(function (user) {
             var tr = trTemplate.replace(/\${[a-zA-Z]*}/g,function (keyWarpper) {

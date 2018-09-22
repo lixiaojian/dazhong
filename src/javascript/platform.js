@@ -51,7 +51,7 @@
         var data = respData.data;
         var page = respData.page;
 
-        var trTemplate = '<tr><td><input type="checkbox" name="userChecked" value="${id}"></td><td>${company}</td><td>${name}</td><td>${phone}</td><td>${userName}</td><td>${accountStatus}</td><td>${updateTime}</td><td>${updater}</td></tr>>';
+        var trTemplate = '<tr><td><input type="checkbox" name="userChecked" value="${id}"></td><td>${company}</td><td>${name}</td><td>${phone}</td><td>${userName}</td><td>${accountStatus}</td><td>${updateTime}</td><td>${updater}</td></tr>';
         var usersTr = [];
         data.map(function (system) {
             var tr = trTemplate.replace(/\${[a-zA-Z]*}/g,function (keyWarpper) {

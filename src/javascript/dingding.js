@@ -52,7 +52,7 @@
         var data = respData.data;
         var page = respData.page;
 
-        var trTemplate = '<tr><td><input type="checkbox" name="userChecked" value="${id}"></td><td>${name}</td><td>${position}</td><td>${phone}</td><td>${email}</td></tr>>';
+        var trTemplate = '<tr><td><input type="checkbox" name="userChecked" value="${id}"></td><td>${name}</td><td>${position}</td><td>${phone}</td><td>${email}</td></tr>';
         var userTrs = [];
         data.map(function (system) {
             var tr = trTemplate.replace(/\${[a-zA-Z]*}/g,function (keyWarpper) {

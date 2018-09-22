@@ -5,7 +5,7 @@
     //搜索的表单
     var searchForm = document.getElementById('search_form');
     //表格
-    var operationListTable = $('#operationListTable');
+    var operationListTable = $('#operationListTableBody');
     //编辑和添加用户的弹层
     var detailDialog = $('#detailDialog');
 
@@ -44,25 +44,21 @@
     function renderTable(respData) {
         var data = respData.data;
         var page = respData.page;
-        operationListTable.datagrid({
-            data:data,
-            fitColumns:true,
-            fit:true,
-            striped:true,
-            singleSelect:true,
-            columns:[[
-                {field:'',checkbox:true,align:'center'},
-                {field:'id',title:'主键ID',align:'center'},
-                {field:'name',title:'操作数据项名称',align:'center'},
-                {field:'type',title:'操作类型',align:'center'},
-                {field:'handlers',title:'操作人',align:'center'},
-                {field:'ip',title:'操作人IP',align:'center'},
-                {field:'dateTime',title:'操作时间',align:'center'}
-            ]]
-        });
+
+        var trTemplate = '<tr><td><input type="checkbox" name="operationChecked" value="${id}"></td><td>${id}</td><td>${name}</td><td>${type}</td><td>${handlers}</td><td>${ip}</td><td>${dateTime}</td></tr>';
+        var operations = [];
+        data.map(function (system) {
+            var tr = trTemplate.replace(/\${[a-zA-Z]*}/g,function (keyWarpper) {
+                var key = keyWarpper.substring(2, keyWarpper.length - 1);
+                return system[key];
+            })
+            operations.push(tr);
+        })
+        operationListTable.html(operations.join(''));
         initPagination(page.pageSize,page.pageNumber,page.total);
     }
-
+    //点击行
+    ckilckTableRow(operationListTable,'operationChecked');
     /**
      * 初始化表格的分页
      * @param pageSize
@@ -94,14 +90,14 @@
     $('#show_detail_btn').on('click',function (e) {
         e.stopPropagation();
         //获取选中的行
-        var row = operationListTable.datagrid('getSelected');
-        if(row){
+        var checkeBox = operationListTable.find('input[name="operationChecked"]:checked')[0];
+        if(checkeBox){
             $.ajax({
                 url: apiUrlBase+'platformLogDetail.json',
                 method: 'GET',
                 dataType: 'json',
                 data:{
-                    id:row.id
+                    id:checkeBox.id
                 }
             }).done(function (resp) {
                 if(resp.code === successCode){

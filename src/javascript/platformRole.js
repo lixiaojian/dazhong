@@ -50,7 +50,7 @@
         var data = respData.data;
         var page = respData.page;
 
-        var trTemplate = '<tr><td><input type="checkbox" name="roleChecked" value="${id}"></td><td>${id}</td><td>${roleName}</td><td>${desc}</td></tr>>';
+        var trTemplate = '<tr><td><input type="checkbox" name="roleChecked" value="${id}"></td><td>${id}</td><td>${roleName}</td><td>${desc}</td></tr>';
         var roleTrs = [];
         data.map(function (system) {
             var tr = trTemplate.replace(/\${[a-zA-Z]*}/g,function (keyWarpper) {
