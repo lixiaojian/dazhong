@@ -39,10 +39,25 @@
         <a id="disable_user_btn" data-options="width:80" href="javascript:;" class="easyui-linkbutton c5">停用</a>
         <a id="undisable_user_btn" data-options="width:80" href="javascript:;" class="easyui-linkbutton c1">恢复</a>
     </div>
-    <!--表格-->
-    <table id="userListTable"></table>
-    <!--分页-->
-    <div id="userlist_pagination"></div>
+
+    <div class="table-box">
+        <!--表格-->
+        <table class="data-table" id="userListTable">
+            <thead>
+            <tr>
+                <td></td>
+                <td>所属公司</td>
+                <td>姓名</td>
+                <td>手机号码</td>
+                <td>用户名</td>
+                <td>账户状态</td>
+            </tr>
+            </thead>
+            <tbody id="userListTableBody"></tbody>
+        </table>
+        <!--分页-->
+        <div id="userlist_pagination"></div>
+    </div>
 </div>
 
 <!--弹层-->
