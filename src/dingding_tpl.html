@@ -13,10 +13,23 @@
                 <a id="add_user_btn" data-options="width:80" href="javascript:;" class="easyui-linkbutton c8">新增</a>
                 <a id="delete_user_btn" data-options="width:80" href="javascript:;" class="easyui-linkbutton c5">删除</a>
             </div>
-            <!--表格-->
-            <table id="userListTable"></table>
-            <!--分页-->
-            <div id="userlist_pagination"></div>
+            <div class="table-box">
+                <!--表格-->
+                <table class="data-table" id="userListTable">
+                    <thead>
+                    <tr>
+                        <td></td>
+                        <td>姓名</td>
+                        <td>职位</td>
+                        <td>手机号码</td>
+                        <td>邮箱</td>
+                    </tr>
+                    </thead>
+                    <tbody id="userListTableBody"></tbody>
+                </table>
+                <!--分页-->
+                <div id="userlist_pagination"></div>
+            </div>
         </div>
     </div>
 </div>

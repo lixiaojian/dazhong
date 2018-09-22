@@ -10,6 +10,7 @@
     var editSystemForm = $('#edit_system_form');
     //编辑和添加用户的弹层
     var editDialog = $('#editDialog');
+    var systems = [];
     /**
      * 去请求数据
      * @param pageNumber 页数
@@ -29,6 +30,7 @@
             }
         }).done(function (resp) {
             if(resp.code === successCode){
+                systems = resp.data;
                 renderTable(resp);
             }else{
                 showError(resp.msg || '获取数据失败');
@@ -101,11 +103,16 @@
     $('#edit_sys_btn').on('click',function (e) {
         e.stopPropagation();
         //获取选中的行
-        var row = systemListTable.datagrid('getSelected');
-        if(row){
-            editDialog.dialog('open').dialog('center').dialog('setTitle','修改系统');
-            //数据回填 如果列表数据不全，这里可以先取记录id 然后通过id再去加载一次详情
-            editSystemForm.form('load',row);
+        var checkeBox = systemListTable.find('input[name="systemChecked"]:checked')[0];
+        if(checkeBox && checkeBox.value){
+            var system = systems.filter(function (sys) {
+                return sys.id == checkeBox.value;
+            });
+            if(system[0]){
+                editDialog.dialog('open').dialog('center').dialog('setTitle','修改系统');
+                //数据回填 如果列表数据不全，这里可以先取记录id 然后通过id再去加载一次详情
+                editSystemForm.form('load',system[0]);
+            }
         }else{
             showError('请先选择需要设置的记录行!');
         }
@@ -120,8 +127,8 @@
     $('#disabled_sys_btn').on('click',function (e) {
         e.stopPropagation();
         //获取选中的行
-        var row = systemListTable.datagrid('getSelected');
-        if(row){
+        var checkeBox = systemListTable.find('input[name="systemChecked"]:checked')[0];
+        if(checkeBox && checkeBox.value){
             $.messager.confirm('确认提示','您确定要禁用该系统?',function(r){
                 //如果点击了确定按钮
                 if (r){
@@ -129,7 +136,7 @@
                         url:apiUrlBase+'ok.json',
                         method: 'GET',
                         data:{
-                            id:row.id
+                            id:checkeBox.value
                         }
                     }).done(function (resp) {
                         if(resp.code === successCode){

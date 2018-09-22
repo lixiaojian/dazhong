@@ -3,7 +3,7 @@
  */
 ;$(function () {
     //表格
-    var userListTable = $('#userListTable');
+    var userListTable = $('#userListTableBody');
     //组织架构树
     var deptTree = $('#dept_tree');
     //当前选中的部门ID 点击组织架构中的部门时会更新该值
@@ -51,22 +51,21 @@
     function renderTable(respData) {
         var data = respData.data;
         var page = respData.page;
-        userListTable.datagrid({
-            data:data,
-            fitColumns:true,
-            fit:true,
-            striped:true,
-            singleSelect:true,
-            columns:[[
-                {field:'id','title':'',checkbox:true},
-                {field:'name',title:'姓名',align:'center'},
-                {field:'position',title:'职位',align:'center'},
-                {field:'phone',title:'手机号码',align:'center'},
-                {field:'email',title:'邮箱',align:'center'}
-            ]]
-        });
+
+        var trTemplate = '<tr><td><input type="checkbox" name="userChecked" value="${id}"></td><td>${name}</td><td>${position}</td><td>${phone}</td><td>${email}</td></tr>>';
+        var userTrs = [];
+        data.map(function (system) {
+            var tr = trTemplate.replace(/\${[a-zA-Z]*}/g,function (keyWarpper) {
+                var key = keyWarpper.substring(2, keyWarpper.length - 1);
+                return system[key];
+            })
+            userTrs.push(tr);
+        })
+        userListTable.html(userTrs.join(''));
         initPagination(page.pageSize,page.pageNumber,page.total);
     }
+    //点击行
+    ckilckTableRow(userListTable,'userChecked');
     /**
      * 初始化表格的分页
      * @param pageSize
@@ -156,8 +155,8 @@
             return;
         }
         //获取选中的行
-        var row = userListTable.datagrid('getSelected');
-        if(row){
+        var checkeBox = userListTable.find('input[name="userChecked"]:checked')[0];
+        if(checkeBox && checkeBox.value){
             $.messager.confirm('确认提示','您确定要删除该用户?',function(r){
                 //如果点击了确定按钮
                 if (r){
@@ -165,7 +164,7 @@
                         url:apiUrlBase+'ok.json',
                         method: 'GET',
                         data:{
-                            id:row.id
+                            id:checkeBox.value
                         }
                     }).done(function (resp) {
                         if(resp.code === successCode){
