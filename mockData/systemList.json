@@ -8,10 +8,6 @@
   "data":[
     {"id":1,"name":"OA","dept":"全集团","phone":"13762531234","sysImg":"http://www.dz.com/1.jpg","callBackUrl":"http://www.dz.com/callback","createTime":"2018-09-01 12:12:00","creater":"张三","updateTime":"2018-09-01 14:12:00","updater":"李四","mark":"这里是备注123"},
     {"id":2,"name":"OB","dept":"大众交通","phone":"13762533333","sysImg":"http://www.dz.com/2.jpg","callBackUrl":"http://www.dz.com/callback2","createTime":"2018-09-02 12:12:00","creater":"李四","updateTime":"2018-09-02 14:12:00","updater":"张三","mark":"这里是备注222"},
-    {"id":3,"name":"OC","dept":"别克","phone":"13762534444","sysImg":"http://www.dz.com/3.jpg","callBackUrl":"http://www.dz.com/callback3","createTime":"2018-09-01 12:12:00","creater":"张三","updateTime":"2018-09-01 14:12:00","updater":"李四","mark":"这里是备注3333"},
-    {"id":4,"name":"OD","dept":"全集团","phone":"13762535555","sysImg":"http://www.dz.com/4.jpg","callBackUrl":"http://www.dz.com/callback4","createTime":"2018-09-01 12:12:00","creater":"张三","updateTime":"2018-09-01 14:12:00","updater":"李四","mark":"这里是备注444"},
-    {"id":1,"name":"OA","dept":"全集团","phone":"13762531234","sysImg":"http://www.dz.com/1.jpg","callBackUrl":"http://www.dz.com/callback","createTime":"2018-09-01 12:12:00","creater":"张三","updateTime":"2018-09-01 14:12:00","updater":"李四","mark":"这里是备注123"},
-    {"id":2,"name":"OB","dept":"大众交通","phone":"13762533333","sysImg":"http://www.dz.com/2.jpg","callBackUrl":"http://www.dz.com/callback2","createTime":"2018-09-02 12:12:00","creater":"李四","updateTime":"2018-09-02 14:12:00","updater":"张三","mark":"这里是备注222"},
     {"id":3,"name":"OC","dept":"别克","phone":"13762534444","sysImg":"http://www.dz.com/3.jpg","callBackUrl":"http://www.dz.com/callback3","createTime":"2018-09-01 12:12:00","creater":"张三","updateTime":"2018-09-01 14:12:00","updater":"李四","mark":"这里是备注3333"}
   ]
 }

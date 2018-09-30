@@ -9,8 +9,9 @@
     //编辑和添加用户的form
     var editUserForm = $('#edit_user_form');
     //编辑和添加用户的弹层
-    var editDialog = $('#editDialog');
+    var editDialog = $('#editDialog')
     var allUser = null;
+
     /**
      * 去请求数据
      * @param pageNumber 页数
@@ -90,53 +91,75 @@
         getData(1);
     })
 
-    //点击新增账户按钮
-    $('#add_user_btn').on('click',function (e) {
-        e.stopPropagation();
-        //显示弹层
-        editDialog.dialog('open').dialog('center').dialog('setTitle','添加用户');
-        //清空弹层的数据
-        editUserForm.form('clear');
-    });
-    //点击设置账户按钮
-    $('#edit_user_btn').on('click',function (e) {
-        e.stopPropagation();
-        //获取选中的行
-        var checkeBox = userListTable.find('input[name="userChecked"]:checked')[0];
-        if(checkeBox && checkeBox.value){
-            editDialog.dialog('open').dialog('center').dialog('setTitle','设置用户');
-            //数据回填 如果列表数据不全，这里可以先取记录id 然后通过id再去加载一次详情
-            var user = allUser.filter(function (user) {
-                return user.id == checkeBox.value;
-            })
-            editUserForm.form('load',user[0]);
-        }else{
-            showError('请先选择需要设置的记录行!');
-        }
-    });
-    //点击保存按钮
-    $('#save_user_btn').on('click',function (e) {
-        e.stopPropagation();
-        // todo 这里记得提交前做验证
-        $.ajax({
-            url: apiUrlBase+'ok.json',
-            method: 'POST',
-            dataType: 'json',
-            //todo 这里用表单序列化需要注意 复选框的值，如果取值有问题请单独取所有的值(参考上面的搜索取值)
-            data:editUserForm.serialize()
-        }).done(function (resp) {
-            if(resp.code === successCode){
-                showSuccess('保存成功',function () {
-                    //关闭弹层 这里也可以关闭后重新加载数据做到数据实时更新的效果
-                    editDialog.dialog('close');
-                })
-            }else{
-                showError(resp.msg || '操作失败');
-            }
-        }).fail(function () {
-            showError('服务器错误！');
+    //获取编辑时的可用系统
+    $.ajax({
+        url:apiUrlBase+'systemList.json',
+        method:'POST',
+        dataType:'json'
+    }).done(function (resp) {
+        var systems = resp.data;
+        var systemsHtmls = ['<label class="textbox-label textbox-label-before" style="text-align: right; height: 30px; line-height: 30px;">可用系统:</label>'];
+        systems.map(function (sys) {
+            systemsHtmls.push('<input class="easyui-checkbox" name="systems" value="'+sys.id+'" label="'+sys.name+':" labelAlign="right">')
+        })
+        //将后台获取的数据回填到页面
+        $('#user_management_system_list').html(systemsHtmls.join(''));
+        //重新初始化checkbox
+        $('.easyui-checkbox').checkbox();
+
+        //点击新增账户按钮
+        $('#add_user_btn').on('click',function (e) {
+            e.stopPropagation();
+            //显示弹层
+            editDialog.dialog('open').dialog('center').dialog('setTitle','添加用户');
+            //清空弹层的数据
+            editUserForm.form('clear');
         });
-    })
+        //点击设置账户按钮
+        $('#edit_user_btn').on('click',function (e) {
+            e.stopPropagation();
+            //获取选中的行
+            var checkeBox = userListTable.find('input[name="userChecked"]:checked')[0];
+            if(checkeBox && checkeBox.value){
+                editDialog.dialog('open').dialog('center').dialog('setTitle','设置用户');
+                //数据回填 如果列表数据不全，这里可以先取记录id 然后通过id再去加载一次详情
+                var user = allUser.filter(function (user) {
+                    return user.id == checkeBox.value;
+                })
+                editUserForm.form('load',user[0]);
+            }else{
+                showError('请先选择需要设置的记录行!');
+            }
+        });
+        //点击保存按钮
+        $('#save_user_btn').on('click',function (e) {
+            e.stopPropagation();
+            // todo 这里记得提交前做验证
+            $.ajax({
+                url: apiUrlBase+'ok.json',
+                method: 'POST',
+                dataType: 'json',
+                //todo 这里用表单序列化需要注意 复选框的值，如果取值有问题请单独取所有的值(参考上面的搜索取值)
+                data:editUserForm.serialize()
+            }).done(function (resp) {
+                if(resp.code === successCode){
+                    showSuccess('保存成功',function () {
+                        //关闭弹层 这里也可以关闭后重新加载数据做到数据实时更新的效果
+                        editDialog.dialog('close');
+                    })
+                }else{
+                    showError(resp.msg || '操作失败');
+                }
+            }).fail(function () {
+                showError('服务器错误！');
+            });
+        })
+
+    }).fail(function (err){
+        //请求失败
+        showError('服务器错误!');
+    });
+
     //页面刚开始进来时加载一次数据
     getData(1);
 
