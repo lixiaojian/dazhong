@@ -79,6 +79,7 @@ function ckilckTableRow(table,checkName) {
         var pageName = target.data('page');
         var title = target.html();
         //重新加载新的内容
+        $('.dialog-modal-window').remove();
         pageContent.panel('refresh','./'+pageName+'_tpl.html');
         contentPanel.panel('setTitle','当前位置：'+title);
     })
